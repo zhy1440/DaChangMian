@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>application</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- test -->
+	<servlet>
+		<servlet-name>ContactServlet</servlet-name>
+		<servlet-class>com.dcmomis.servlet.ContactServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContactServlet</servlet-name>
+		<url-pattern>/contact</url-pattern>
+	</servlet-mapping>
+	<!-- order operation -->
+	<servlet>
+		<servlet-name>OrderOperationServ</servlet-name>
+		<servlet-class>com.dcmomis.order.service.OrderOperationServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderOperationServ</servlet-name>
+		<url-pattern>/OrderOperation</url-pattern>
+	</servlet-mapping>
+	<!--image upload -->
+	<servlet>
+		<servlet-name>ImageUploadServ</servlet-name>
+		<servlet-class>com.dcmomis.order.service.ImageUploadServ</servlet-class>
+		　　<!-- 设置初始化参数 -->
+		<init-param>
+			<param-name>picPath</param-name>
+			<param-value>war\downloadpic\</param-value>
+		</init-param>
+    
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageUploadServ</servlet-name>
+		<url-pattern>/ImageUpload</url-pattern>
+	</servlet-mapping>
+	<!-- Customer Management -->
+	<servlet>
+		<servlet-name>CustomerManagementServ</servlet-name>
+		<servlet-class>com.dcmomis.user.service.CustomerManagementServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CustomerManagementServ</servlet-name>
+		<url-pattern>/CustomerManagement</url-pattern>
+	</servlet-mapping>
+	<!-- User login -->
+	<servlet>
+		<servlet-name>UserLoginServ</servlet-name>
+		<servlet-class>com.dcmomis.user.service.UserLoginServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserLoginServ</servlet-name>
+		<url-pattern>/UserLogin</url-pattern>
+	</servlet-mapping>
+	<!-- Customer Management -->
+	<servlet>
+		<servlet-name>AddressManagementServ</servlet-name>
+		<servlet-class>com.dcmomis.user.service.AddressManagementServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddressManagementServ</servlet-name>
+		<url-pattern>/addrManagement</url-pattern>
+	</servlet-mapping>
+</web-app>

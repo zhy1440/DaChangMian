@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/config.properties=UTF-8
+encoding//war/app=UTF-8
+encoding//war/app/view/admin/user/CustomerInfoList.js=UTF-8
+encoding//war/app/view/customer/CustomerInfo.js=UTF-8
+encoding//war/app/view/customer/OrderDetail.js=UTF-8
+encoding//war/app/view/customer/OrderManagement.js=UTF-8
+encoding//war/app/view/customer/OrderManagementController.js=UTF-8
+encoding//war/app/view/customer/OrderPlace.js=UTF-8
+encoding//war/app/view/customer/OrderPlaceController.js=UTF-8
+encoding//war/app/view/main/CustomerMain.js=UTF-8
+encoding//war/index.jsp=GBK
+encoding/<project>=GBK
