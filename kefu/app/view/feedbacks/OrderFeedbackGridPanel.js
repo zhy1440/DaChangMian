@@ -16,6 +16,14 @@ var toolbar = Ext.create('Ext.toolbar.Toolbar', {
             xtype: 'tbtext',
             text: '下单备注：<font color = "blue">暂无</font>'
         },
+        '-', {
+            xtype: 'button',
+            id:'refresh',
+            text: '刷新',
+            handler: function() {
+                Ext.getCmp('orderFeedbackNaviTree').store.reload();
+            }
+        },
         // begin using the right-justified button container
         '->', // same as { xtype: 'tbfill' }
         {

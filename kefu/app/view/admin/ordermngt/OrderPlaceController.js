@@ -49,7 +49,7 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 						  		console.log('go to my orders');
 											Ext.getCmp('kefuMain')
 													.setActiveTab(1);
-											Ext.getCmp('orderFeedbackNaviTree')//.store.reload();
+											//Ext.getCmp('orderFeedbackNaviTree')//.store.reload();
 									  		myMsg.destroy();
 						  	}
 						  }, { 

@@ -103,7 +103,8 @@ Ext.define('app.view.admin.ordermngt.OrderPlace', {
 								}]
 					}, {
 						name : 'discountDesc',
-						fieldLabel : '折扣'
+						fieldLabel : '折扣' + redStar,
+						allowBlank : false
 					}, {
 						name : 'comments',
 						fieldLabel : '备注'
