@@ -16,6 +16,7 @@ public class OrderRecordBean {
 	private String discountDesc;
 	private String discountFinal;
 	private String totalPrice;
+	private String finalPrice;
 	private String comments;
 	private String picture;
 	private String overseasFreigh;
@@ -111,6 +112,12 @@ public class OrderRecordBean {
 	}
 	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public String getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(String finalPrice) {
+		this.finalPrice = finalPrice;
 	}
 	public String getComments() {
 		return comments;

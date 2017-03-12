@@ -80,6 +80,7 @@ public class FeedBacksDao {
 				orderRecord.setCommodityDesc(result.getString("COMMODITY_DESC"));
 				orderRecord.setAmount(result.getString("AMOUNT"));
 				orderRecord.setTotalPrice(result.getString("TOTAL_PRICE"));
+				orderRecord.setFinalPrice(result.getString("TOTAL_PRICE"));
 				orderRecord.setGoodsColor(result.getString("GOODS_COLOR"));
 				orderRecord.setUnitPrice(result.getString("UNIT_PRICE"));
 				orderRecord.setGoodsSize(result.getString("GOODS_SIZE"));

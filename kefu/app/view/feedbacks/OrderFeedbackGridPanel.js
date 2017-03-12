@@ -1,79 +1,16 @@
 /**
  * This view is an example list of people.
  */
-var toolbar = Ext.create('Ext.toolbar.Toolbar', {
-    //renderTo: document.body,
-    width: 500,
-    items: [{
-            xtype: 'tbtext',
-            text: '数量合计：<font color = "red">0</font>'
-        },
-        '-', {
-            xtype: 'tbtext',
-            text: '总价合计：<font color = "red">0</font>'
-        },
-        '-', {
-            xtype: 'tbtext',
-            text: '下单备注：<font color = "blue">暂无</font>'
-        },
-        '-', {
-            xtype: 'button',
-            id:'refresh',
-            text: '刷新',
-            handler: function() {
-                Ext.getCmp('orderFeedbackNaviTree').store.reload();
-            }
-        },
-        // begin using the right-justified button container
-        '->', // same as { xtype: 'tbfill' }
-        {
-            xtype: 'splitbutton',
-            text: '移动到...',
-            handler: function() {
-                //alert("The button was clicked");
-            },
-            menu: new Ext.menu.Menu({
-                items: [
-                    // these will render as dropdown menu items when the arrow is clicked:
-                    {
-                        text: '可下单',
-                        handler: function() {
-                            alert(selected);
-                        }
-                    }, {
-                        text: '流团',
-                        handler: function() {
-                            alert("流团clicked");
-                        }
-                    }
-                ]
-            })
-        }
-        /*, {
-                    xtype: 'textfield',
-                    name: 'field1',
-                    emptyText: 'enter search term'
-                },
-                // add a vertical separator bar between toolbar items
-                '-', // same as {xtype: 'tbseparator'} to create Ext.toolbar.Separator
-                'text 1', // same as {xtype: 'tbtext', text: 'text1'} to create Ext.toolbar.TextItem
-                {
-                    xtype: 'tbspacer'
-                }, // same as ' ' to create Ext.toolbar.Spacer
-                'text 2', {
-                    xtype: 'tbspacer',
-                    width: 50
-                }, // add a 50px space
-                'text 3'*/
-    ]
-});
+//var toolbar = 
 Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
     extend: 'Ext.grid.Panel',
     xtype: 'orderfeedbackgrid',
     ui: 'dark',
     requires: [
-        'app.store.feedbacks.OrderFeedbackRecord'
+        'app.store.feedbacks.OrderFeedbackRecord',
+        'app.view.admin.ordermngt.OrderPlaceController'
     ],
+    controller : 'orderFeedback',
 
     //title: '订单列表',
     store: {
@@ -98,7 +35,67 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
 
         }
     },
-    dockedItems: toolbar,
+    plugins: [
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        ],
+    dockedItems: Ext.create('Ext.toolbar.Toolbar', {
+            //renderTo: document.body,
+            width: 500,
+            items: [{
+                    xtype: 'tbtext',
+                    text: '数量合计：<font color = "red">0</font>'
+                },
+                '-', {
+                    xtype: 'tbtext',
+                    text: '总价合计：<font color = "red">0</font>'
+                },
+                '-', {
+                    xtype: 'tbtext',
+                    text: '下单备注：<font color = "blue">暂无</font>'
+                },
+                '-', {
+                    xtype: 'button',
+                    id:'refresh',
+                    text: '刷新',
+                    handler: function() {
+                        Ext.getCmp('orderFeedbackNaviTree').store.reload();
+                    }
+                },
+                // begin using the right-justified button container
+                '-', // same as { xtype: 'tbfill' }
+                {
+                    xtype: 'splitbutton',
+                    text: '移动到...',
+                    handler: function() {
+                        //alert("The button was clicked");
+                    },
+                    menu: new Ext.menu.Menu({
+                        items: [
+                            // these will render as dropdown menu items when the arrow is clicked:
+                            {
+                                text: '可下单',
+                                handler: 'onAbletoorderClick'
+                            }, {
+                                text: '流团',
+                                handler: function() {
+                                    alert("流团clicked");
+                                }
+                            }
+                        ]
+                    })
+                },
+                '-', {
+                    xtype: 'button',
+                    id:'save',
+                    text: '保存',
+                    handler: function() {
+                        Ext.getCmp('orderFeedbackNaviTree').store.reload();
+                    }
+                }
+            ]
+        }),
     columns: [{
             text: '订单号',
             dataIndex: 'orderId',
@@ -154,7 +151,11 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
         }, {
             text: '折后价',
             dataIndex: 'finalPrice',
-            width: 80
+            width: 80,
+            editor: {
+                xtype: 'textfield',
+                allowBlank: false
+            }
         }, {
             text: '颜色',
             dataIndex: 'goodsColor',

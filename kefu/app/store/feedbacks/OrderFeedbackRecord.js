@@ -6,7 +6,7 @@ Ext.define('app.store.feedbacks.OrderFeedbackRecord', {
 			fields : ['orderId', 'orderTime', 'orderStatus', 'groupId',
 					'cstId', 'link', 'commodityName', 'commodityDesc',
 					'unitPrice', 'amount', 'totalPrice', 'goodsColor', 'goodsSize',
-					'discountDesc', 'discountFinal', 'totalPrice', 'finalPrice',
+					'discountDesc', 'discountFinal', 'finalPrice',
 					'comments', 'picture', 'overseasFreigh', 'inlandFreigh']/*,
 
 			proxy : {
