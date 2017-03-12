@@ -21,18 +21,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
         mode: 'MULTI',
         checkOnly: true,
         listeners: {
-            selectionchange: function(me, selected) {
-                var sumTotalPrice = 0,
-                    sumAmount = 0;
-                selected.forEach(function(element, index, array) {
-                    sumTotalPrice += eval(element.data.totalPrice);
-                    sumAmount += eval(element.data.amount);
-                });
-                toolbar.items.items[0].setText('数量合计：<font color = "red">' + sumAmount + '</font>');
-                toolbar.items.items[2].setText('总价合计：<font color = "red">' + sumTotalPrice + '</font>');
-                //alert(sum);
-            }
-
+            selectionchange: 'onSelectionChange'
         }
     },
     plugins: [
@@ -42,6 +31,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
         ],
     dockedItems: Ext.create('Ext.toolbar.Toolbar', {
             //renderTo: document.body,
+            id: 'feedbacksToolbar',
             width: 500,
             items: [{
                     xtype: 'tbtext',
