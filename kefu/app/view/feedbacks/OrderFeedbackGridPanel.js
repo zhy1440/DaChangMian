@@ -65,13 +65,17 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
                         items: [
                             // these will render as dropdown menu items when the arrow is clicked:
                             {
+                                text: '待拼',
+                                handler: 'onDaiPinClick'
+                            }, {
                                 text: '可下单',
-                                handler: 'onAbletoorderClick'
+                                handler: 'onKeXiaDanClick'
+                            }, {
+                                text: '已成团',
+                                handler: 'onYiChengTuanClick'
                             }, {
                                 text: '流团',
-                                handler: function() {
-                                    alert("流团clicked");
-                                }
+                                handler: 'onLiuTuanClick'
                             }
                         ]
                     })

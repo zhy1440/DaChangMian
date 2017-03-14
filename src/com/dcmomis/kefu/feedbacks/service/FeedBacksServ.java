@@ -50,7 +50,15 @@ public class FeedBacksServ extends HttpServlet {
 			} catch (Exception e) {
 			} finally {
 			}
-		} else if (true) {
+		} else if (action.equals("updateOrderType")) {
+			//移动订单记录
+			try {
+				String orderId = (String) request.getParameter("orderId");
+				String orderType = (String) request.getParameter("orderType");
+				output = FeedBacksDao.updateOrderType(orderId,orderType);
+			} catch (Exception e) {
+			} finally {
+			}
 		}
 		
 		// jsonp设置

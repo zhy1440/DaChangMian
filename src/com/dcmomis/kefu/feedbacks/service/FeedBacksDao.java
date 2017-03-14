@@ -98,4 +98,42 @@ public class FeedBacksDao {
 		return null;
 	}
 
+	/**
+	 * 根据用户id查询该用户所有订单记录list
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public static String updateOrderType(String orderId, String orderType) {
+		// 入库
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		//PreparedStatement pstmLog = null;
+		ResponseBean rb = new ResponseBean();
+		String updateSql = "UPDATE bd_dw_dcm_order_record r set r.ORDER_TYPE = ? where r.ORDER_ID = ? ";
+		try {
+			conn = DBUtils.getDBConnection();
+			pstm = conn.prepareStatement(updateSql);
+			pstm.setString(1, orderType);
+			pstm.setInt(2, Integer.parseInt(orderId));
+			pstm.addBatch();
+			System.out.println("zyDebug---------:" + updateSql + "--------------" + orderType + "----------" + Integer.parseInt(orderId));
+			pstm.executeBatch();
+		} catch (Exception e) {
+			e.printStackTrace();
+			rb.setErrorMsg("出错啦");
+			System.out.println("订单移动出错");
+			rb.setSuccess(false);
+			String result = StringUtils.listToJson(rb, false);
+			return result;
+		} finally {
+			DBUtils.release(pstm, null, conn);
+		}
+		rb.setSuccessMsg("订单移动成功");
+		System.out.println("订单移动成功");
+		rb.setSuccess(true);
+
+		String result = StringUtils.listToJson(rb, false);
+		return result;
+	}
 }
