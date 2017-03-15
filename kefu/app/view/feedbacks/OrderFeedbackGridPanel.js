@@ -26,7 +26,14 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
     },
     plugins: [
             Ext.create('Ext.grid.plugin.CellEditing', {
-                clicksToEdit: 1
+                clicksToEdit: 1,
+                listeners: {
+                    edit: {
+                        fn: function(e){
+                            alert(e);
+                        }
+                    }
+                }
             })
         ],
     dockedItems: Ext.create('Ext.toolbar.Toolbar', {
@@ -140,14 +147,16 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
             width: 80
         }, {
             text: '总价',
+            format: '$0,00',
             dataIndex: 'totalPrice',
             width: 80
         }, {
             text: '折后价',
+            format: '$0,00',
             dataIndex: 'finalPrice',
             width: 80,
             editor: {
-                xtype: 'textfield',
+                xtype: 'numberfield',
                 allowBlank: false
             }
         }, {
