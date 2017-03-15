@@ -113,14 +113,6 @@ public class NaviTreeDao {
 					break;
 				}
 			}
-			
-			
-			
-
-			
-			
-			
-			
 			return childNodesList;
 		} catch (Exception e) {
 			e.printStackTrace();

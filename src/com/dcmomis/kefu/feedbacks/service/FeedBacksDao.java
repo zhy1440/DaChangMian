@@ -32,7 +32,7 @@ public class FeedBacksDao {
 		String groupId = p[p.length - 1];
 		String queryString = "SELECT "
 				+ "ORDER_ID, ORDER_STATUS, ORDER_TIME, GROUP_ID, CST_ID, LINK, COMMODITY_NAME, COMMODITY_DESC,"
-				+ "UNIT_PRICE, AMOUNT, UNIT_PRICE*AMOUNT*DISCOUNT_FINAL AS TOTAL_PRICE, GOODS_COLOR, GOODS_SIZE, DISCOUNT_FINAL, DISCOUNT_FINAL, "
+				+ "UNIT_PRICE, AMOUNT, UNIT_PRICE*AMOUNT*DISCOUNT_FINAL AS TOTAL_PRICE, GOODS_COLOR, GOODS_SIZE, FINAL_PRICE, DISCOUNT_FINAL, "
 				+ "COMMENTS, PICTURE, OVERSEAS_FREIGH, INLAND_FREIGH " + "FROM BD_DW_DCM_ORDER_RECORD "
 				+ "WHERE ORDER_TYPE = '" + orderType + "' AND GROUP_ID = '" + groupId;
 		if (5 == p.length) {
@@ -80,7 +80,7 @@ public class FeedBacksDao {
 				orderRecord.setCommodityDesc(result.getString("COMMODITY_DESC"));
 				orderRecord.setAmount(result.getString("AMOUNT"));
 				orderRecord.setTotalPrice(result.getString("TOTAL_PRICE"));
-				orderRecord.setFinalPrice(result.getString("TOTAL_PRICE"));
+				orderRecord.setFinalPrice(result.getString("FINAL_PRICE"));
 				orderRecord.setGoodsColor(result.getString("GOODS_COLOR"));
 				orderRecord.setUnitPrice(result.getString("UNIT_PRICE"));
 				orderRecord.setGoodsSize(result.getString("GOODS_SIZE"));
@@ -99,9 +99,9 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * 根据用户id查询该用户所有订单记录list
+	 * 根据订单编号修改订单类型
 	 * 
-	 * @param id
+	 * @param orderId,orderType
 	 * @return
 	 */
 	public static String updateOrderType(String orderId, String orderType) {
@@ -131,6 +131,44 @@ public class FeedBacksDao {
 		}
 		rb.setSuccessMsg("订单移动成功");
 		System.out.println("订单移动成功");
+		rb.setSuccess(true);
+
+		String result = StringUtils.listToJson(rb, false);
+		return result;
+	}
+	/**
+	 * 根据订单编号修改折后价
+	 * 
+	 * @param orderId,finalPrice
+	 * @return
+	 */
+	public static String updateFinalPrice(String orderId, String finalPrice) {
+		// 入库
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		//PreparedStatement pstmLog = null;
+		ResponseBean rb = new ResponseBean();
+		String updateSql = "UPDATE bd_dw_dcm_order_record r set r.FINAL_PRICE = ? where r.ORDER_ID = ? ";
+		try {
+			conn = DBUtils.getDBConnection();
+			pstm = conn.prepareStatement(updateSql);
+			pstm.setFloat(1, Float.parseFloat(finalPrice));
+			pstm.setInt(2, Integer.parseInt(orderId));
+			pstm.addBatch();
+			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
+			pstm.executeBatch();
+		} catch (Exception e) {
+			e.printStackTrace();
+			rb.setErrorMsg("折后价修改出错啦");
+			System.out.println("折后价修改出错");
+			rb.setSuccess(false);
+			String result = StringUtils.listToJson(rb, false);
+			return result;
+		} finally {
+			DBUtils.release(pstm, null, conn);
+		}
+		rb.setSuccessMsg("折后价修改成功");
+		System.out.println("折后价修改成功");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);

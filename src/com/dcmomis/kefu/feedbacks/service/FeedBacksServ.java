@@ -59,6 +59,15 @@ public class FeedBacksServ extends HttpServlet {
 			} catch (Exception e) {
 			} finally {
 			}
+		} else if (action.equals("updateFinalPrice")) {
+			//移动订单记录
+			try {
+				String orderId = (String) request.getParameter("orderId");
+				String finalPrice = (String) request.getParameter("finalPrice");
+				output = FeedBacksDao.updateFinalPrice(orderId,finalPrice);
+			} catch (Exception e) {
+			} finally {
+			}
 		}
 		
 		// jsonp设置

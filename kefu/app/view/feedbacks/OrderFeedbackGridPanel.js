@@ -28,11 +28,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
             Ext.create('Ext.grid.plugin.CellEditing', {
                 clicksToEdit: 1,
                 listeners: {
-                    edit: {
-                        fn: function(e){
-                            alert(e);
-                        }
-                    }
+                    edit: 'OnEdit'
                 }
             })
         ],
@@ -86,16 +82,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
                             }
                         ]
                     })
-                },
-                '-', {
-                    xtype: 'button',
-                    id:'save',
-                    text: '保存',
-                    handler: function() {
-                        Ext.getCmp('orderFeedbackNaviTree').store.reload();
-                    }
-                }
-            ]
+                }            ]
         }),
     columns: [{
             text: '订单号',

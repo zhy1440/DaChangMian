@@ -29,8 +29,8 @@ public class OrderOperationDao {
 		ResponseBean rb = new ResponseBean();
 		String insertSql = "INSERT INTO `bd_dw_dcm_order_record` "
 				+ "(ORDER_TIME, GROUP_ID, CST_ID, DCM_ID, LINK, COMMODITY_NAME, "
-				+ "COMMODITY_DESC, UNIT_PRICE, AMOUNT, GOODS_COLOR, " + "GOODS_SIZE, DISCOUNT_FINAL, COMMENTS, PICTURE) "
-				+ "VALUES " + "( DATE_FORMAT(NOW(), '%Y-%m-%d %T'),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "COMMODITY_DESC, UNIT_PRICE, AMOUNT, GOODS_COLOR, " + "GOODS_SIZE, DISCOUNT_FINAL, COMMENTS, PICTURE,FINAL_PRICE) "
+				+ "VALUES " + "( DATE_FORMAT(NOW(), '%Y-%m-%d %T'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 /*		String insertLogSql= "INSERT INTO `bd_dw_dcm_order_op_log`"
 				+ "(ORDER_ID, OPERATOR, OP_TIME) VALUES (?, 'auto', ( DATE_FORMAT(NOW(), '%Y-%m-%d %T'))";*/
 		try {
@@ -53,6 +53,8 @@ public class OrderOperationDao {
 			} else {
 				pstm.setString(13, orb.getPicture());
 			}
+			pstm.setFloat(14, Float.parseFloat(orb.getUnitPrice()) * Float.parseFloat(orb.getAmount())
+					* Float.parseFloat(orb.getDiscountDesc()));
 			pstm.addBatch();
 			System.out.println("zyDebug---------:" + insertSql + "--------------" + orb.getDcmId());
 			pstm.executeBatch();
