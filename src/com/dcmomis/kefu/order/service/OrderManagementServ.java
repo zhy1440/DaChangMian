@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,8 @@ import com.dcmomis.order.OrderRecordBean;
 import com.dcmomis.order.service.OrderOperationDao;
 import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.StringUtils;
+
+import net.sf.json.JSONObject;
 
 public class OrderManagementServ extends HttpServlet {
 	// execute GET request
@@ -31,24 +36,26 @@ public class OrderManagementServ extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
+		String myParam = request.getParameter("myParam");
+		JSONObject jsonObject = JSONObject.fromObject(myParam);
 		OrderRecordBean orb = new OrderRecordBean();
-		orb.setCstId(request.getParameter("cstId"));
-		orb.setDcmId(request.getParameter("dcmId"));
-		orb.setLink(request.getParameter("link"));
-		orb.setCommodityName(request.getParameter("commodityName"));
-		orb.setUnitPrice(request.getParameter("unitPrice"));
-		orb.setAmount(request.getParameter("amount"));
-		orb.setGoodsColor(request.getParameter("goodsColor"));
-		orb.setGoodsSize(request.getParameter("goodsSize"));
-		orb.setDiscountDesc(request.getParameter("discountDesc"));
-		orb.setComments(request.getParameter("comments"));
-		orb.setPicture(request.getParameter("picUrl"));
+		orb.setCstId((String)jsonObject.get("cstId"));
+		orb.setDcmId((String)jsonObject.get("dcmId"));
+		orb.setLink((String)jsonObject.get("link"));
+		orb.setCommodityName((String)jsonObject.get("commodityName"));
+		orb.setUnitPrice((String)jsonObject.get("unitPrice"));
+		orb.setAmount((String)jsonObject.get("amount"));
+		orb.setGoodsColor((String)jsonObject.get("goodsColor"));
+		orb.setGoodsSize((String)jsonObject.get("goodsSize"));
+		orb.setDiscountDesc((String)jsonObject.get("discountDesc"));
+		orb.setComments((String)jsonObject.get("comments"));
+		orb.setPicture((String)jsonObject.get("picUrl"));
 
 		// String output = "{success: true,errors: {clientCode: 'Client not
 		// found',portOfLoading: 'This field must not be null'}}";
 		String output = OrderOperationDao.placeOrderRecord(orb);
 		
-		// jsonpÉèÖÃ
+		// jsonpï¿½ï¿½ï¿½ï¿½
 		boolean jsonP = false;
 		String cb = request.getParameter("callback");
 		if (cb != null) {

@@ -35,7 +35,7 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 					method : 'POST',
 					contentType: "atext/html; charset=utf-8",
 					waitMsg : 'Submitting your data...',
-					params : param,
+					params : {myParam: Ext.util.JSON.encode(param)},
 					success : function(result) {
 						// server responded with
 						// success = true
