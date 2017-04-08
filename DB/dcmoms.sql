@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-03-16 00:42:13
+Date: 2017-04-08 20:38:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -228,7 +228,7 @@ CREATE TABLE `bd_dw_dcm_order_record` (
   `ORDER_STATUS` varchar(1) NOT NULL DEFAULT '0' COMMENT '订单状态',
   `ORDER_TYPE` varchar(1) NOT NULL DEFAULT '0' COMMENT '订单分类',
   PRIMARY KEY (`ORDER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bd_dw_dcm_order_record
@@ -278,6 +278,8 @@ INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000143', '2017-03-11 01:08:58'
 INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000144', '2017-03-15 23:35:38', 'coach', '1', 'miao', 'http://china.coach.com/product/86850_LHBCE/detail.htm?collection=women_newarrivals', 'éçè¶ç«ç°æµèç²é¢ç®é©DINKIER æè¢', null, '5950.0000', '2.0000', 'éç²è²', 'æ ', null, '0.8000', null, '4798.0000', '', 'downloadpic\\20170315-233538.jpg', null, null, '0', '0');
 INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000145', '2017-03-15 23:35:38', 'coach', '1', 'miao', 'http://china.coach.com/product/86850_LHBCE/detail.htm?collection=women_newarrivals', 'éçè¶ç«ç°æµèç²é¢ç®é©DINKIER æè¢', null, '5950.0000', '2.0000', 'éç²è²', 'æ ', null, '0.8000', null, '1213.0000', '', 'downloadpic\\20170315-233538.jpg', null, null, '0', '0');
 INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000146', '2017-03-15 23:39:43', 'coach', '1', 'miao', 'http://china.coach.com/product/86850_LHBCE/detail.htm?collection=women_newarrivals', 'éçè¶ç«ç°æµèç²é¢ç®é©DINKIER æè¢', null, '5950.0000', '2.0000', 'éç²è²', 'æ ', null, '0.8000', null, '554.0000', '', 'downloadpic\\20170315-233943.jpg', null, null, '0', '0');
+INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000147', '2017-03-20 00:06:19', 'unknown', '1', 'åµ', '123', '133MIAOMII', null, '1232.0000', '23.0000', 'æ ', 'æ ', null, '0.9800', null, '27769.2812', '', 'downloadpic\\20170320-000619.jpg', null, null, '0', '0');
+INSERT INTO `bd_dw_dcm_order_record` VALUES ('0000000148', '2017-04-08 20:22:58', 'amazon', '1', '喵喵', 'https://www.amazon.cn/gp/product/B01ISWJSPO/ref=zg_bs_wireless_1?ie=UTF8&psc=1&refRID=XQ1SCHABR5GJTY2FGJEY', 'HUAWEI 华为 荣耀8 FRD-AL10 4GB+64GB 全网通版4G手机(魅海蓝)', null, '2599.0000', '5.0000', '魅海蓝', '4GB+64GB版', null, '0.8900', null, '11565.5498', '', 'downloadpic\\20170408-202258.jpg', null, null, '0', '1');
 
 -- ----------------------------
 -- Table structure for bd_dw_dcm_order_record_copy
