@@ -165,7 +165,7 @@ public class OrderOperationDao {
 		if (-1 != num) {
 			t = t.substring(1, num);
 		} else {
-			int n = t.indexOf("application");
+			int n = t.indexOf("DcmWorkspace");
 			t = t.substring(1, n);
 		}
 		System.out.println(t);
