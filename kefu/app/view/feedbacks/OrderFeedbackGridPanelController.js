@@ -6,11 +6,10 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
     alias : 'controller.orderFeedback',
 
     updateOrderType: function(orderIds, orderType) {
-        alert(orderIds);
+        //alert(orderIds);
         Ext.data.JsonP.request({
             url: 'http://localhost:8080/application/feedbacks',//部署后需要修改
             method : 'POST',
-            contentType: "atext/html; charset=utf-8",
             waitMsg : 'Submitting your data...',
             params: {
                 action: 'updateOrderType',
@@ -89,7 +88,6 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
         Ext.data.JsonP.request({
             url: 'http://localhost:8080/application/feedbacks',//部署后需要修改
             method : 'POST',
-            contentType: "atext/html; charset=utf-8",
             waitMsg : 'Submitting your data...',
             params: {
                 action: 'updateFinalPrice',
