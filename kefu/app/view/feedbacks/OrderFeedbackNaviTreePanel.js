@@ -50,7 +50,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
 	xtype: 'orderfeedbacknavitree',
 	requires: ['app.view.feedbacks.OrderFeedbackGridPanel'],
 	ui: 'dark',
-	id: "myTreePanel",
+	//id: "myTreePanel",
 	store: store,
 	/*    columns: [{
 	        xtype: 'treecolumn', 

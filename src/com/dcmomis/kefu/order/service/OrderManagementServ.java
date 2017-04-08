@@ -2,14 +2,6 @@ package com.dcmomis.kefu.order.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dcmomis.order.OrderRecordBean;
 import com.dcmomis.order.service.OrderOperationDao;
-import com.dcmomis.utils.DBUtils;
-import com.dcmomis.utils.StringUtils;
 
 import net.sf.json.JSONObject;
 
@@ -55,7 +45,7 @@ public class OrderManagementServ extends HttpServlet {
 		// found',portOfLoading: 'This field must not be null'}}";
 		String output = OrderOperationDao.placeOrderRecord(orb);
 		
-		// jsonpï¿½ï¿½ï¿½ï¿½
+		// jsonpÔOÖÃ
 		boolean jsonP = false;
 		String cb = request.getParameter("callback");
 		if (cb != null) {

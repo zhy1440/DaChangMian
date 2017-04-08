@@ -56,7 +56,7 @@ public class OrderOperationDao {
 			pstm.setFloat(14, Float.parseFloat(orb.getUnitPrice()) * Float.parseFloat(orb.getAmount())
 					* Float.parseFloat(orb.getDiscountDesc()));
 			pstm.addBatch();
-			System.out.println("zyDebug---------:" + insertSql + "--------------" + orb.getDcmId());
+			System.out.println("zyDebug---------:" + insertSql + "--------------" + orb.getCstId());
 			pstm.executeBatch();
 			
 /*			pstmLog = conn.prepareStatement(insertLogSql);
