@@ -33,7 +33,6 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 				Ext.data.JsonP.request({
 					url : 'http://localhost:8080/application/orderPlaceKefu',
 					method : 'POST',
-					contentType: "atext/html; charset=utf-8",
 					waitMsg : 'Submitting your data...',
 					params : {myParam: Ext.util.JSON.encode(param)},
 					success : function(result) {
