@@ -1,63 +1,33 @@
 /**
- * This view is for customer to place an order.
+ * This view is navitree on orderFeedbacks page.
  */
-Ext.define('Navi', {
-	extend: 'Ext.data.Model',
-	fields: [
-		'id', {
-			name: 'name',
-			type: 'string'
-		}
-	],
-	proxy: {
-		type: 'jsonp',
-		url: 'http://localhost:8080/application/getNaviTree'//部署后需要修改
-			/*,
-			        api: {
-			            create: 'createPersons',
-			            read: 'getNaviTree',
-			            update: 'updatePersons',
-			            destroy: 'destroyPersons'
-			        }*/
-	}
-
-});
-
-var store = Ext.create('Ext.data.TreeStore', {
-	model: 'Navi',
-	root: {
-		id: 'naviRoot',
-		text: 'root',
-		expanded: true,
-		children: [{
-			id: '0',
-			text: '待拼'
-		}, {
-			id: '1',
-			text: '可下单'
-		}, {
-			id: '2',
-			text: '已成团'
-		}, {
-			id: '3',
-			text: '流团'
-		}]
-	}
-});
-
 Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
 	extend: 'Ext.tree.Panel',
 	xtype: 'orderfeedbacknavitree',
-	requires: ['app.view.feedbacks.OrderFeedbackGridPanel'],
+	requires: ['app.model.naviTree.OrderFeedbacksNavi'],
 	ui: 'dark',
 	//id: "myTreePanel",
-	store: store,
-	/*    columns: [{
-	        xtype: 'treecolumn', 
-	        header: 'Name', 
-	        dataIndex: 'name', 
-	        flex: 1
-	    }],*/
+	store: Ext.create('Ext.data.TreeStore', {
+		model: 'app.model.naviTree.OrderFeedbacksNavi',
+		root: {
+			id: 'naviRoot',
+			text: 'root',
+			expanded: true,
+			children: [{
+				id: '0',
+				text: '待拼'
+			}, {
+				id: '1',
+				text: '可下单'
+			}, {
+				id: '2',
+				text: '已成团'
+			}, {
+				id: '3',
+				text: '流团'
+			}]
+		}
+	}),
 	autoScroll: true,
 	containerScorll: true,
 	animate: true,
