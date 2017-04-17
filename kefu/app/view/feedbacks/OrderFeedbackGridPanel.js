@@ -97,7 +97,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
         {
             text: '顾客id',
             dataIndex: 'cstId',
-            hidden: true
+            hidden: false
         }, {
             text: '商品名称',
             dataIndex: 'commodityName',

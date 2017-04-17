@@ -34,15 +34,6 @@ Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
 	autoHeight: true,
 	width: 300,
 	rootVisible: false,
-	/*	        listeners : {
-		            "itemclick" : {
-		                fn : function() {
-		                	alert(1);
-		                    this.collapseAll();
-		                },
-		                scope : this
-		} 
-	}*/
 	listeners: {
 		//在展开前调用，发送请求，请求中应有节点信息  
 		'itemclick': function(record, index) {

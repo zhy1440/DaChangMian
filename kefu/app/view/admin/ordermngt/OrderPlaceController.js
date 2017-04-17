@@ -153,7 +153,7 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 								var param = form.getFieldValues();
 								if (form.isValid()) {
 									form.submit({
-										url : './ImageUpload',
+										url : 'http://localhost:8080/application/ImageUpload',
 										method : 'POST',
 										waitMsg : '正在上传图片。。。',
 										panel : panel,
