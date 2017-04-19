@@ -37,7 +37,7 @@
 		　　<!-- 设置初始化参数 -->
 		<init-param>
 			<param-name>picPath</param-name>
-			<param-value>war\downloadpic\</param-value>
+			<param-value>kefu\downloadpic\</param-value>
 		</init-param>
     
 	</servlet>
@@ -71,5 +71,32 @@
 	<servlet-mapping>
 		<servlet-name>AddressManagementServ</servlet-name>
 		<url-pattern>/addrManagement</url-pattern>
+	</servlet-mapping>
+	<!-- Navi Tree -->
+	<servlet>
+		<servlet-name>NaviTreeServ</servlet-name>
+		<servlet-class>com.dcmomis.kefu.service.NaviTreeServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NaviTreeServ</servlet-name>
+		<url-pattern>/getNaviTree</url-pattern>
+	</servlet-mapping>
+	<!--Feedbacks -->
+	<servlet>
+		<servlet-name>FeedBacksServ</servlet-name>
+		<servlet-class>com.dcmomis.kefu.feedbacks.service.FeedBacksServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FeedBacksServ</servlet-name>
+		<url-pattern>/feedbacks</url-pattern>
+	</servlet-mapping>
+	<!--orderplace_kefu -->
+	<servlet>
+		<servlet-name>OrderOperationServ</servlet-name>
+		<servlet-class>com.dcmomis.kefu.order.service.OrderManagementServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderOperationServ</servlet-name>
+		<url-pattern>/orderPlaceKefu</url-pattern>
 	</servlet-mapping>
 </web-app>
