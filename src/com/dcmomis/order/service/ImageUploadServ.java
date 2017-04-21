@@ -33,7 +33,7 @@ public class ImageUploadServ extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) {
-		// »ñÈ¡µ±Ç°ÏîÄ¿µÄÏà¶ÔÂ·¾¶
+		// ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		System.out.println(t);// debug
 		int num = t.indexOf(".metadata");
@@ -41,13 +41,13 @@ public class ImageUploadServ extends HttpServlet {
 		if (-1 != num) {
 			t = t.substring(1, num);
 		} else {
-			int n = t.indexOf("application");
+			int n = t.indexOf("DcmWorkspace");
 			t = t.substring(1, n);
 		}
 		System.out.println(t);
-		savePath = t.replace('/', '\\') + "application\\war\\downloadpic\\";
+		savePath = t.replace('/', '\\') + "DcmWorkspace\\kefu\\downloadpic\\";
 		System.out.println(savePath);// debug
-		// ÔÚweb.xmlÖÐÉèÖÃµÄÒ»¸ö³õÊ¼»¯²ÎÊý
+		// ï¿½ï¿½web.xmlï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		picPath = config.getInitParameter("picPath");
 
 	}
@@ -67,21 +67,21 @@ public class ImageUploadServ extends HttpServlet {
 			while (itr.hasNext()) {
 				FileItem item = (FileItem) itr.next();
 				if (item.isFormField()) {
-					System.out.println("±íµ¥²ÎÊýÃû:" + item.getFieldName() + "£¬±íµ¥²ÎÊýÖµ:" + item.getString("UTF-8"));
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + item.getFieldName() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ:" + item.getString("UTF-8"));
 				} else {
 					if (item.getName() != null && !item.getName().equals("")) {
-						System.out.println("ÉÏ´«ÎÄ¼þµÄ´óÐ¡:" + item.getSize());
-						System.out.println("ÉÏ´«ÎÄ¼þµÄÀàÐÍ:" + item.getContentType());
-						// item.getName()·µ»ØÉÏ´«ÎÄ¼þÔÚ¿Í»§¶ËµÄÍêÕûÂ·¾¶Ãû³Æ
-						System.out.println("ÉÏ´«ÎÄ¼þµÄÃû³Æ:" + item.getName());
+						System.out.println("ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½Ä´ï¿½Ð¡:" + item.getSize());
+						System.out.println("ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + item.getContentType());
+						// item.getName()ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½Ú¿Í»ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						System.out.println("ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + item.getName());
 
 						File tempFile = new File(item.getName());
 						String fileName = tempFile.getName();
 						String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
-						// ÉèÖÃÈÕÆÚ¸ñÊ½
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 						String strNow = df.format(new Date());
-						// ÉÏ´«ÎÄ¼þµÄ±£´æÂ·¾¶
+						// ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 						File file = new File(savePath, strNow + "." + prefix);
 						rb.setFileName(picPath.substring(4) + strNow + "." + prefix);
 						item.write(file);
@@ -92,12 +92,12 @@ public class ImageUploadServ extends HttpServlet {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("Í¼Æ¬ÉÏ´«Ê§°Ü");
+			rb.setErrorMsg("Í¼Æ¬ï¿½Ï´ï¿½Ê§ï¿½ï¿½");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			out.print(result);
 		}
-		rb.setSuccessMsg("Í¼Æ¬ÉÏ´«³É¹¦£¡");
+		rb.setSuccessMsg("Í¼Æ¬ï¿½Ï´ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 		rb.setSuccess(true);
 		String result = StringUtils.listToJson(rb, false);
 		out.print(result);
