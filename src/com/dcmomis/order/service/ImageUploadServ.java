@@ -83,7 +83,9 @@ public class ImageUploadServ extends HttpServlet {
 						String strNow = df.format(new Date());
 						// �ϴ��ļ��ı���·��
 						File file = new File(savePath, strNow + "." + prefix);
-						rb.setFileName(picPath.substring(4) + strNow + "." + prefix);
+						rb.setFileName(picPath.substring(5) + strNow + "." + prefix);
+
+						System.out.println("uploaded FileName:" + picPath.substring(4) + strNow + "." + prefix);
 						item.write(file);
 					}
 				}
@@ -97,7 +99,7 @@ public class ImageUploadServ extends HttpServlet {
 			String result = StringUtils.listToJson(rb, false);
 			out.print(result);
 		}
-		rb.setSuccessMsg("ͼƬ�ϴ��ɹ���");
+		rb.setSuccessMsg("上传成功");
 		rb.setSuccess(true);
 		String result = StringUtils.listToJson(rb, false);
 		out.print(result);

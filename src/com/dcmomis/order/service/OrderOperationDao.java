@@ -22,7 +22,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class OrderOperationDao {
 	public static String placeOrderRecord(OrderRecordBean orb) {
-		// Èë¿â
+		// ???
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -67,14 +67,14 @@ public class OrderOperationDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("³ö´íÀ²");
+			rb.setErrorMsg("??????");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("ÏÂµ¥³É¹¦,ÊÇ·ñÌø×ªµ½³ÉÍÅ·´À¡£¿");
+		rb.setSuccessMsg("?µ????,???????????y?????");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
@@ -82,7 +82,7 @@ public class OrderOperationDao {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓĞ¶©µ¥¼ÇÂ¼json
+	 * ?????û?id??????û??????????¼json
 	 * 
 	 * @param id
 	 * @return
@@ -95,7 +95,7 @@ public class OrderOperationDao {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓĞ¶©µ¥¼ÇÂ¼list
+	 * ?????û?id??????û??????????¼list
 	 * 
 	 * @param id
 	 * @return
@@ -143,21 +143,21 @@ public class OrderOperationDao {
 	}
 
 	public static String storeImage(String strUrl) throws Exception {
-		// newÒ»¸öURL¶ÔÏó
+		// newh??URL????
 		URL url = new URL(strUrl);
-		// ´ò¿ªÁ´½Ó
+		// ??????
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		// ÉèÖÃÇëÇó·½Ê½Îª"GET"
+		// ??????????"GET"
 		conn.setRequestMethod("GET");
-		// ³¬Ê±ÏìÓ¦Ê±¼äÎª5Ãë
+		// ??????????5??
 		conn.setConnectTimeout(5 * 1000);
-		// Í¨¹ıÊäÈëÁ÷»ñÈ¡Í¼Æ¬Êı¾İ
+		// ??????????????????
 		InputStream inStream = conn.getInputStream();
-		// µÃµ½Í¼Æ¬µÄ¶ş½øÖÆÊı¾İ£¬ÒÔ¶ş½øÖÆ·â×°µÃµ½Êı¾İ£¬¾ßÓĞÍ¨ÓÃĞÔ
+		// ?õ????K????????????????????õ???????????????
 		byte[] data = readInputStream(inStream);
-		// newÒ»¸öÎÄ¼ş¶ÔÏóÓÃÀ´±£´æÍ¼Æ¬£¬Ä¬ÈÏ±£´æµ±Ç°¹¤³Ì¸ùÄ¿Â¼
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");// ÉèÖÃÈÕÆÚ¸ñÊ½
-		// »ñÈ¡µ±Ç°ÏîÄ¿µÄÏà¶ÔÂ·¾¶
+		// newh???l?????????????????I?????j??????¼
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");// ??????????
+		// ?????j????????·??
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		System.out.println(t);
 		int num = t.indexOf(".metadata");
@@ -169,58 +169,44 @@ public class OrderOperationDao {
 			t = t.substring(1, n);
 		}
 		System.out.println(t);
-		String path = t.replace('/', '\\') + "DcmWorkspace\\war\\downloadpic\\";
-		System.out.println("path1" + path);
+
+		String path = t.replace('/', '\\') + "DcmWorkspace\\kefu\\downloadpic\\";
+		System.out.println(path);
 		String fileName = df.format(new Date()) + ".jpg";
 		// String fileName ="\\aqaaaa.jpg";
 		File imageFile = new File(path + fileName);
 		// boolean a = imageFile.createNewFile();
 
-		// ´´½¨Êä³öÁ÷
+		// ?????????
 		FileOutputStream outStream = new FileOutputStream(imageFile);
-		// Ğ´ÈëÊı¾İ
+		// ???????
 		outStream.write(data);
-		// ¹Ø±ÕÊä³öÁ÷
+		// ????????
 		outStream.close();
-		// outStream.flush();// ±ØĞëË¢ĞÂÎÄ¼ş²ÅÓĞÄÚÈİ
-
-		path = t.replace('/', '\\') + "DcmWorkspace\\kefu\\downloadpic\\";
-		System.out.println(path);
-		 fileName = df.format(new Date()) + ".jpg";
-		// String fileName ="\\aqaaaa.jpg";
-		imageFile = new File(path + fileName);
-		// boolean a = imageFile.createNewFile();
-
-		// ´´½¨Êä³öÁ÷
-		outStream = new FileOutputStream(imageFile);
-		// Ğ´ÈëÊı¾İ
-		outStream.write(data);
-		// ¹Ø±ÕÊä³öÁ÷
-		outStream.close();
-		// outStream.flush();// ±ØĞëË¢ĞÂÎÄ¼ş²ÅÓĞÄÚÈİ
+		// outStream.flush();// ????????l?????????
 		
 		return "downloadpic\\" + fileName;
 	}
 
 	public static byte[] readInputStream(InputStream inStream) throws Exception {
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-		// ´´½¨Ò»¸öBuffer×Ö·û´®
+		// ????h??Buffer?????
 		byte[] buffer = new byte[1024];
-		// Ã¿´Î¶ÁÈ¡µÄ×Ö·û´®³¤¶È£¬Èç¹ûÎª-1£¬´ú±íÈ«²¿¶ÁÈ¡Íê±Ï
+		// ÿ????????????????????-1???????????????
 		int len = 0;
-		// Ê¹ÓÃÒ»¸öÊäÈëÁ÷´ÓbufferÀï°ÑÊı¾İ¶ÁÈ¡³öÀ´
+		// '??h??????????buffer?????????????
 		while ((len = inStream.read(buffer)) != -1) {
-			// ÓÃÊä³öÁ÷ÍùbufferÀïĞ´ÈëÊı¾İ£¬ÖĞ¼ä²ÎÊı´ú±í´ÓÄÄ¸öÎ»ÖÃ¿ªÊ¼¶Á£¬len´ú±í¶ÁÈ¡µÄ³¤¶È
+			// ?????????buffer??????????????????????????ÿ?'????len???????????
 			outStream.write(buffer, 0, len);
 		}
-		// ¹Ø±ÕÊäÈëÁ÷
+		// ?????????
 		inStream.close();
-		// °ÑoutStreamÀïµÄÊı¾İĞ´ÈëÄÚ´æ
+		// ??outStream?????????????
 		return outStream.toByteArray();
 	}
 
 	/**
-	 * ×Ô¶¯·ÖÍÅ
+	 * ???????
 	 * @param link
 	 * @return
 	 */

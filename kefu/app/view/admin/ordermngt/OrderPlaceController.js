@@ -30,15 +30,15 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 			var param = form.getFieldValues();
 
 			if (form.isValid()) {
-				Ext.data.JsonP.request({
-					url : 'http://localhost:8080/application/orderPlaceKefu',
+				form.submit({
+					url : './orderPlaceKefu',
 					method : 'POST',
 					waitMsg : 'Submitting your data...',
-					params : {myParam: Ext.util.JSON.encode(param)},
-					success : function(result) {
+					params : param,
+					success : function(form, action) {
 						// server responded with
 						// success = true
-						var successMsg = result.successMsg;
+						var result = action.result.successMsg;
 						var myMsg = Ext.create('Ext.window.MessageBox', {
 						    closeAction: 'destroy',
 						    buttons: [ { 
@@ -65,7 +65,7 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 						]
 						}).show({
 									title : '提交成功',
-									message : successMsg,
+									message : result,
 									icon : Ext.Msg.QUESTION
 						});
 /*						Ext.Msg.show({
@@ -159,16 +159,11 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 										panel : panel,
 										// params : {"abc":"heihei"},
 										success : function(fp, o) {
-											Ext.Msg.alert('Success',
-													o.result.successMsg);
-											Ext.getCmp('image')
-													.setSrc(o.result.fileName);
-											Ext
-													.getCmp('picUrl')
-													.setValue(o.result.fileName);
+											Ext.Msg.alert('Success', o.result.fileName);
+											Ext.getCmp('image').setSrc(o.result.fileName);
+											Ext.getCmp('picUrl').setValue(o.result.fileName);
 											// }
-											Ext.getCmp('kefuMain')
-													.setActiveTab(0);
+											Ext.getCmp('kefuMain').setActiveTab(0);
 											// alert('You clicked the
 											// button!');
 											panel.up('window').destroy();

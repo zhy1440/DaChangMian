@@ -17,7 +17,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class FeedBacksDao {
 	/**
-	 * ²éÑ¯×Ó½Úµã
+	 * ï¿½ï¿½Ñ¯ï¿½Ó½Úµï¿½
 	 * 
 	 * @param node
 	 * @return
@@ -49,7 +49,7 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * ¸ù¾ÝÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓÐ¶©µ¥¼ÇÂ¼list
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Â¼list
 	 * 
 	 * @param id
 	 * @return
@@ -86,7 +86,7 @@ public class FeedBacksDao {
 				orderRecord.setGoodsSize(result.getString("GOODS_SIZE"));
 				orderRecord.setDiscountDesc(result.getString("DISCOUNT_FINAL"));
 				orderRecord.setComments(result.getString("COMMENTS"));
-				orderRecord.setPicture("<img src=\"/" + result.getString("PICTURE") + "\"/  height=\"200\">");//http://www.dachangmian.cn:8888
+				orderRecord.setPicture("<img src=\"/" + result.getString("PICTURE") + "\"  height=\"200\">");//http://www.dachangmian.cn:8888
 				orderRecordList.add(orderRecord);
 			}
 			return orderRecordList;
@@ -99,13 +99,13 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * ¸ù¾Ý¶©µ¥±àºÅÐÞ¸Ä¶©µ¥ÀàÐÍ
+	 * ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param orderId,orderType
 	 * @return
 	 */
 	public static String updateOrderType(String orderId, String orderType) {
-		// Èë¿â
+		// ï¿½ï¿½ï¿½
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -121,29 +121,29 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("³ö´íÀ²");
-			System.out.println("¶©µ¥ÒÆ¶¯³ö´í");
+			rb.setErrorMsg("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("¶©µ¥ÒÆ¶¯³É¹¦");
-		System.out.println("¶©µ¥ÒÆ¶¯³É¹¦");
+		rb.setSuccessMsg("ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½É¹ï¿½");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½É¹ï¿½");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 	}
 	/**
-	 * ¸ù¾Ý¶©µ¥±àºÅÐÞ¸ÄÕÛºó¼Û
+	 * ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½Ûºï¿½ï¿½
 	 * 
 	 * @param orderId,finalPrice
 	 * @return
 	 */
 	public static String updateFinalPrice(String orderId, String finalPrice) {
-		// Èë¿â
+		// ï¿½ï¿½ï¿½
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -159,16 +159,16 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("ÕÛºó¼ÛÐÞ¸Ä³ö´íÀ²");
-			System.out.println("ÕÛºó¼ÛÐÞ¸Ä³ö´í");
+			rb.setErrorMsg("ï¿½Ûºï¿½ï¿½ï¿½Þ¸Ä³ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ï¿½Ûºï¿½ï¿½ï¿½Þ¸Ä³ï¿½ï¿½ï¿½");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("ÕÛºó¼ÛÐÞ¸Ä³É¹¦");
-		System.out.println("ÕÛºó¼ÛÐÞ¸Ä³É¹¦");
+		rb.setSuccessMsg("ï¿½Ûºï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½");
+		System.out.println("ï¿½Ûºï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
