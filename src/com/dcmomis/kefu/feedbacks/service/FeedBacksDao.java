@@ -86,7 +86,7 @@ public class FeedBacksDao {
 				orderRecord.setGoodsSize(result.getString("GOODS_SIZE"));
 				orderRecord.setDiscountDesc(result.getString("DISCOUNT_FINAL"));
 				orderRecord.setComments(result.getString("COMMENTS"));
-				orderRecord.setPicture("<img src=\"/" + result.getString("PICTURE") + "\"  height=\"200\">");//http://www.dachangmian.cn:8888
+				orderRecord.setPicture("<img src=\"" + result.getString("PICTURE") + "\"  height=\"200\">");//http://www.dachangmian.cn:8888
 				orderRecordList.add(orderRecord);
 			}
 			return orderRecordList;

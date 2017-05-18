@@ -93,7 +93,7 @@
 	<!--orderplace_kefu -->
 	<servlet>
 		<servlet-name>OrderOperationServ</servlet-name>
-		<servlet-class>com.dcmomis.kefu.order.service.OrderManagementServ</servlet-class>
+		<servlet-class>com.dcmomis.order.service.OrderOperationServ</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>OrderOperationServ</servlet-name>
