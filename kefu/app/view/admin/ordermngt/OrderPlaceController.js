@@ -153,13 +153,13 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 								var param = form.getFieldValues();
 								if (form.isValid()) {
 									form.submit({
-										url : 'http://localhost:8080/application/ImageUpload',
+										url : './ImageUpload',
 										method : 'POST',
 										waitMsg : '正在上传图片。。。',
 										panel : panel,
 										// params : {"abc":"heihei"},
 										success : function(fp, o) {
-											Ext.Msg.alert('Success', o.result.fileName);
+											console.log('Success! fileName: ', o.result.fileName);
 											Ext.getCmp('image').setSrc(o.result.fileName);
 											Ext.getCmp('picUrl').setValue(o.result.fileName);
 											// }

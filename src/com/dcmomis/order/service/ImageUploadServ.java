@@ -33,11 +33,10 @@ public class ImageUploadServ extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) {
-		// ��ȡ��ǰ��Ŀ�����·��
+		//get the path web application working on
 		String t = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 		System.out.println(t);// debug
 		int num = t.indexOf(".metadata");
-		System.out.println(num);// debug
 		if (-1 != num) {
 			t = t.substring(1, num);
 		} else {
@@ -45,10 +44,10 @@ public class ImageUploadServ extends HttpServlet {
 			t = t.substring(1, n);
 		}
 		System.out.println(t);
-		savePath = t.replace('/', '\\') + "DcmWorkspace\\kefu\\downloadpic\\";
-		System.out.println(savePath);// debug
-		// ��web.xml�����õ�һ����ʼ������
+		// get common pic save path from web.xml
 		picPath = config.getInitParameter("picPath");
+		savePath = t.replace('/', '\\') + picPath;
+		System.out.println(savePath);
 
 	}
 
@@ -67,25 +66,23 @@ public class ImageUploadServ extends HttpServlet {
 			while (itr.hasNext()) {
 				FileItem item = (FileItem) itr.next();
 				if (item.isFormField()) {
-					System.out.println("��������:" + item.getFieldName() + "��������ֵ:" + item.getString("UTF-8"));
+					System.out.println("fieldName:" + item.getFieldName() + "value:" + item.getString("UTF-8"));
 				} else {
 					if (item.getName() != null && !item.getName().equals("")) {
-						System.out.println("�ϴ��ļ��Ĵ�С:" + item.getSize());
-						System.out.println("�ϴ��ļ�������:" + item.getContentType());
-						// item.getName()�����ϴ��ļ��ڿͻ��˵�����·������
-						System.out.println("�ϴ��ļ�������:" + item.getName());
+						// Debug file information
+						System.out.println("fileSize:" + item.getSize());
+						System.out.println("fileType:" + item.getContentType());
+						System.out.println("uploadedFileName:" + item.getName());
 
-						File tempFile = new File(item.getName());
-						String fileName = tempFile.getName();
-						String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
+						String tempFileName = item.getName();
+						String prefix = tempFileName.substring(tempFileName.lastIndexOf(".") + 1);
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
-						// �������ڸ�ʽ
+						// Define file name use time string
 						String strNow = df.format(new Date());
-						// �ϴ��ļ��ı���·��
 						File file = new File(savePath, strNow + "." + prefix);
-						rb.setFileName(picPath.substring(5) + strNow + "." + prefix);
+						rb.setFileName("downloadpic/" + strNow + "." + prefix);
 
-						System.out.println("uploaded FileName:" + picPath.substring(4) + strNow + "." + prefix);
+						System.out.println("uploaded FileName:" + "downloadpic/" + strNow + "." + prefix);
 						item.write(file);
 					}
 				}
@@ -94,12 +91,12 @@ public class ImageUploadServ extends HttpServlet {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("ͼƬ�ϴ�ʧ��");
+			rb.setErrorMsg("ͼƬ�ϴ�ʧ�ܣ�");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			out.print(result);
 		}
-		rb.setSuccessMsg("上传成功");
+		rb.setSuccessMsg("ͼƬ�ϴ��ɹ���");
 		rb.setSuccess(true);
 		String result = StringUtils.listToJson(rb, false);
 		out.print(result);

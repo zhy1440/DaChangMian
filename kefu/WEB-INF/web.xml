@@ -37,7 +37,7 @@
 		　　<!-- 设置初始化参数 -->
 		<init-param>
 			<param-name>picPath</param-name>
-			<param-value>kefu\downloadpic\</param-value>
+			<param-value>DcmWorkspace\kefu\downloadpic\</param-value>
 		</init-param>
     
 	</servlet>
