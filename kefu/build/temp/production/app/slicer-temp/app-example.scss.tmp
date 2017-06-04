@@ -868,18 +868,18 @@ $include-app-store-feedbacks-orderfeedbackrecord: dynamic(true);;
 $include-app-store-order-customerorderrecord: dynamic(true);;
 $include-app-store-order-orderrecord: dynamic(true);;
 $include-app-store-user-customerinfo: dynamic(true);;
-$include-app-view-admin-ordermngt-orderplace: dynamic(true);;
-$include-app-view-admin-ordermngt-orderplacecontroller: dynamic(true);;
 $include-app-view-admin-user-customerinfolist: dynamic(true);;
 $include-app-view-feedbacks-orderfeedbackgridpanel: dynamic(true);;
 $include-app-view-feedbacks-orderfeedbackgridpanelcontroller: dynamic(true);;
-$include-app-view-feedbacks-orderfeedbackmain: dynamic(true);;
+$include-app-view-feedbacks-orderfeedbackmasterpanel: dynamic(true);;
 $include-app-view-feedbacks-orderfeedbacknavitreepanel: dynamic(true);;
 $include-app-view-login-login: dynamic(true);;
 $include-app-view-login-logincontroller: dynamic(true);;
 $include-app-view-main-main: dynamic(true);;
 $include-app-view-main-maincontroller: dynamic(true);;
 $include-app-view-main-mainmodel: dynamic(true);;
+$include-app-view-ordermngt-orderplace: dynamic(true);;
+$include-app-view-ordermngt-orderplacecontroller: dynamic(true);;
 
 
 /* ======================== ETC ======================== */

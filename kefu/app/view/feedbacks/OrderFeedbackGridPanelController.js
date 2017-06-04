@@ -7,8 +7,8 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
 
     updateOrderType: function(orderIds, orderType) {
         //alert(orderIds);
-        Ext.data.JsonP.request({
-            url: 'http://localhost:8080/application/feedbacks',//部署后需要修改
+        Ext.Ajax.request({
+            url: './feedbacks',//部署后需要修改
             method : 'POST',
             waitMsg : 'Submitting your data...',
             params: {
@@ -16,7 +16,8 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
                 orderId: orderIds,
                 orderType: orderType
             },
-            success : function(result) {
+            success : function(response) {
+                var result = Ext.decode(response.responseText);
                 Ext.Msg.show({
                     title : '提交成功',
                     message : result.successMsg,
@@ -39,34 +40,50 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
     onDaiPinClick: function() {
         var me = this,
             selected = me.getView().getSelection();
-            selected.forEach(function  (element,index, array) {
-                // body...
-                me.updateOrderType(element.data.orderId,0);
-            })
+        if (selected.length == 0) {
+            Ext.MessageBox.alert("警告","请选择需要移动的订单！");
+            return;
+        }
+        selected.forEach(function  (element,index, array) {
+            // body...
+            me.updateOrderType(element.data.orderId, 0);
+        })
     },
     onKeXiaDanClick: function() {
         var me = this,
             selected = me.getView().getSelection();
-            selected.forEach(function  (element,index, array) {
-                // body...
-                me.updateOrderType(element.data.orderId, 1);
-            })
+        if (selected.length == 0) {
+            Ext.MessageBox.alert("警告","请选择需要移动的订单！");
+            return;
+        }
+        selected.forEach(function  (element,index, array) {
+            // body...
+            me.updateOrderType(element.data.orderId, 1);
+        })
     },
     onYiChengTuanClick: function() {
         var me = this,
             selected = me.getView().getSelection();
-            selected.forEach(function  (element,index, array) {
-                // body...
-                me.updateOrderType(element.data.orderId, 2);
-            })
+        if (selected.length == 0) {
+            Ext.MessageBox.alert("警告","请选择需要移动的订单！");
+            return;
+        }
+        selected.forEach(function  (element,index, array) {
+            // body...
+            me.updateOrderType(element.data.orderId, 2);
+        })
     },
     onLiuTuanClick: function() {
         var me = this,
             selected = me.getView().getSelection();
-            selected.forEach(function  (element,index, array) {
-                // body...
-                me.updateOrderType(element.data.orderId, 3);
-            })
+        if (selected.length == 0) {
+            Ext.MessageBox.alert("警告","请选择需要移动的订单！");
+            return;
+        }
+        selected.forEach(function  (element,index, array) {
+            // body...
+            me.updateOrderType(element.data.orderId, 3);
+        })
     },
 
     onSelectionChange: function(me, selected) {
@@ -113,5 +130,10 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
                 }
             }
         });
+    },
+    onOrderByOrderIdClick: function(me,e) {
+        this.getView().store.sort([
+            { property: 'orderId',  direction: 'DESC' }
+        ]);
     }
 });

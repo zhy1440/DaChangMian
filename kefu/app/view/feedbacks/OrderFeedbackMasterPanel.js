@@ -1,10 +1,10 @@
 /**
  * This view is for customer to place an order.
  */
-Ext.define('app.view.feedbacks.OrderFeedbackMain', {
+Ext.define('app.view.feedbacks.OrderFeedbackMasterPanel', {
 			extend : 'Ext.Panel',
 			xtype : 'orderfeedback',
-			requires : [ 'app.view.feedbacks.OrderFeedbackGridPanel','app.view.feedbacks.OrderFeedbackNaviTreePanel' ],
+			requires : [ 'app.view.feedbacks.OrderFeedbackGridPanel', 'app.view.feedbacks.OrderFeedbackNaviTreePanel' ],
 			//ui : 'dark',
 			height : 750,
 			//width : 700,
@@ -26,7 +26,6 @@ Ext.define('app.view.feedbacks.OrderFeedbackMain', {
 				this.callParent(arguments);
 			},*/
 			items: [{
-			    //title: 'Navigation',
 			    region:'west',
 			    id: 'orderFeedbackNaviTree',
 			    xtype:'orderfeedbacknavitree',
@@ -36,8 +35,6 @@ Ext.define('app.view.feedbacks.OrderFeedbackMain', {
 			    minSize: 100,
 			    maxSize: 250
 			},{
-			    //title: 'Main Content',
-			    //collapsible: false,
 			    xtype: 'orderfeedbackgrid',
 		        region:'center',
 		        margins: '5 0 0 0'

@@ -17,7 +17,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class FeedBacksDao {
 	/**
-	 * ��ѯ�ӽڵ�
+	 * 锟斤拷询锟接节碉拷
 	 * 
 	 * @param node
 	 * @return
@@ -49,7 +49,7 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * �����û�id��ѯ���û����ж�����¼list
+	 * 锟斤拷锟斤拷锟矫伙拷id锟斤拷询锟斤拷锟矫伙拷锟斤拷锟叫讹拷锟斤拷锟斤拷录list
 	 * 
 	 * @param id
 	 * @return
@@ -99,13 +99,12 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * ���ݶ�������޸Ķ�������
+	 * 锟斤拷锟捷讹拷锟斤拷锟斤拷锟斤拷薷亩锟斤拷锟斤拷锟斤拷锟�
 	 * 
 	 * @param orderId,orderType
 	 * @return
 	 */
 	public static String updateOrderType(String orderId, String orderType) {
-		// ���
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -121,29 +120,29 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("������");
-			System.out.println("�����ƶ�����");
+			rb.setErrorMsg("移动失败");
+			System.out.println("移动失败");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("�����ƶ��ɹ�");
-		System.out.println("�����ƶ��ɹ�");
+		rb.setSuccessMsg("移动成功");
+		System.out.println("移动成功");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 	}
 	/**
-	 * ���ݶ�������޸��ۺ��
+	 * 锟斤拷锟捷讹拷锟斤拷锟斤拷锟斤拷薷锟斤拷酆锟斤拷
 	 * 
 	 * @param orderId,finalPrice
 	 * @return
 	 */
 	public static String updateFinalPrice(String orderId, String finalPrice) {
-		// ���
+		// 锟斤拷锟�
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -159,16 +158,16 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("�ۺ���޸ĳ�����");
-			System.out.println("�ۺ���޸ĳ���");
+			rb.setErrorMsg("锟桔猴拷锟斤拷薷某锟斤拷锟斤拷锟�");
+			System.out.println("锟桔猴拷锟斤拷薷某锟斤拷锟�");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("�ۺ���޸ĳɹ�");
-		System.out.println("�ۺ���޸ĳɹ�");
+		rb.setSuccessMsg("锟桔猴拷锟斤拷薷某晒锟�");
+		System.out.println("锟桔猴拷锟斤拷薷某晒锟�");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);

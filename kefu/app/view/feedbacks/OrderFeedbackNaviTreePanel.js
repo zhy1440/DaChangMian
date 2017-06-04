@@ -40,15 +40,26 @@ Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
 			if (index.raw.leaf == true) {
 				var me = this;
 				//alert(index.raw.id);
-				Ext.data.JsonP.request({
-					url: 'http://localhost:8080/application/feedbacks',//部署后需要修改
+				Ext.Ajax.request({
+					url: './feedbacks',//部署后需要修改
 					params: {
 						action: 'getOrderList',
 						node: index.raw.id
 					},
-					success: function(Optional) {
-						
-						me.up('panel').down('grid').store.loadData(Optional);
+					success: function(response) {
+						var obj = Ext.decode(response.responseText),
+							myGrid = me.up('panel').down('grid');
+						myGrid.store.loadData(obj);
+						if (index.raw.id == "0#unknown") {
+							myGrid.store.sort([
+							    { property: 'link',  direction: 'ASC' },
+							    { property: 'orderId',  direction: 'DESC' }
+							]);
+						} else {
+							myGrid.store.sort([
+							    { property: 'orderId',  direction: 'DESC' }
+							]);
+						}
 					}
 				});
 

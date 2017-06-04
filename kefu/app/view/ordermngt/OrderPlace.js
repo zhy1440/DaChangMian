@@ -2,10 +2,10 @@
  * This view is for customer to place an order.
  */
 var redStar = '<font color = "red">*</font>';
-Ext.define('app.view.admin.ordermngt.OrderPlace', {
+Ext.define('app.view.ordermngt.OrderPlace', {
 			extend : 'Ext.form.FormPanel',
 			xtype : 'orderplace',
-			requires : ['app.view.admin.ordermngt.OrderPlaceController'],
+			requires : ['app.view.ordermngt.OrderPlaceController'],
 			controller : 'orderPlace',
 
 			// The form will submit an AJAX request to this URL when

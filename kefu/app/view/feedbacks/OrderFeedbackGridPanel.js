@@ -8,7 +8,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
     ui: 'dark',
     requires: [
         'app.store.feedbacks.OrderFeedbackRecord',
-        'app.view.admin.ordermngt.OrderPlaceController'
+        'app.view.ordermngt.OrderPlaceController'
     ],
     controller : 'orderFeedback',
 
@@ -56,14 +56,10 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
                         Ext.getCmp('orderFeedbackNaviTree').store.reload();
                     }
                 },
-                // begin using the right-justified button container
-                '-', // same as { xtype: 'tbfill' }
+                '-', 
                 {
                     xtype: 'splitbutton',
                     text: '移动到...',
-                    handler: function() {
-                        //alert("The button was clicked");
-                    },
                     menu: new Ext.menu.Menu({
                         items: [
                             // these will render as dropdown menu items when the arrow is clicked:
@@ -82,7 +78,13 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
                             }
                         ]
                     })
-                }            ]
+                },
+                '-', {
+                    xtype: 'button',
+                    id:'orderByOrderId',
+                    text: '按时间排序',
+                    handler: 'onOrderByOrderIdClick'
+                }]
         }),
     columns: [{
             text: '订单号',

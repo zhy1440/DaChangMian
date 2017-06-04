@@ -5,7 +5,7 @@
  * TODO - Replace this content of this view to suite the needs of your
  * application.
  */
-Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
+Ext.define('app.view.ordermngt.OrderPlaceController', {
 	extend : 'Ext.app.ViewController',
 
 	alias : 'controller.orderPlace',
@@ -24,7 +24,7 @@ Ext.define('app.view.admin.ordermngt.OrderPlaceController', {
 	},
 
 	onConfirm : function(choice) {
-		var me=this;
+		var me = this;
 		if (choice === 'yes') {
 			var form = this.getView().getForm();
 			var param = form.getFieldValues();
