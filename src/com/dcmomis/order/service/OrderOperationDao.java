@@ -205,7 +205,7 @@ public class OrderOperationDao {
 	}
 
 	/**
-	 * ???????
+	 * 获取团号
 	 * @param link
 	 * @return
 	 */
@@ -214,14 +214,15 @@ public class OrderOperationDao {
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet result = null;
-		String queryString = "SELECT DIC_VALUE FROM bd_dic_dcm_common WHERE DIC_TYPE = 'GROUP_ID' ORDER BY DIC_VALUE DESC";
+		String str_link = link.substring(0, link.indexOf(".com")!=-1? link.indexOf(".com"):link.length()); //process link string remove the string after ".com"
+		String queryString = "SELECT UPPER(DIC_VALUE) as DIC_VALUE FROM bd_dic_dcm_common WHERE DIC_TYPE = 'GROUP_ID' ORDER BY DIC_VALUE DESC";
 		try {
 			conn = DBUtils.getDBConnection();
 			stm = conn.createStatement();
 			result = stm.executeQuery(queryString);
 			while (result.next()) {
 				String tmpGroupId = result.getString("DIC_VALUE");
-				int ret = link.indexOf(tmpGroupId);
+				int ret = str_link.toUpperCase().indexOf(tmpGroupId);
 				if (ret != -1) {
 					groupId = tmpGroupId;
 					break;
