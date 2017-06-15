@@ -10,6 +10,7 @@ import java.util.List;
 import com.dcmomis.common.ResponseBean;
 import com.dcmomis.common.TreeNodeBean;
 import com.dcmomis.order.OrderRecordBean;
+import com.dcmomis.order.service.OrderOperationDao;
 import com.dcmomis.user.CustomerAddrBean;
 import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.DicUtils;
@@ -17,7 +18,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class FeedBacksDao {
 	/**
-	 * 锟斤拷询锟接节碉拷
+	 * 閿熸枻鎷疯閿熸帴鑺傜鎷�
 	 * 
 	 * @param node
 	 * @return
@@ -49,7 +50,7 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * 锟斤拷锟斤拷锟矫伙拷id锟斤拷询锟斤拷锟矫伙拷锟斤拷锟叫讹拷锟斤拷锟斤拷录list
+	 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺煫浼欐嫹id閿熸枻鎷疯閿熸枻鎷烽敓鐭紮鎷烽敓鏂ゆ嫹閿熷彨璁规嫹閿熸枻鎷烽敓鏂ゆ嫹褰昹ist
 	 * 
 	 * @param id
 	 * @return
@@ -99,7 +100,7 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * 锟斤拷锟捷讹拷锟斤拷锟斤拷锟斤拷薷亩锟斤拷锟斤拷锟斤拷锟�
+	 * 閿熸枻鎷烽敓鎹疯鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹钖蜂憨閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 	 * 
 	 * @param orderId,orderType
 	 * @return
@@ -120,29 +121,29 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("移动失败");
-			System.out.println("移动失败");
+			rb.setErrorMsg("绉诲姩澶辫触");
+			System.out.println("绉诲姩澶辫触");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("移动成功");
-		System.out.println("移动成功");
+		rb.setSuccessMsg("绉诲姩鎴愬姛");
+		System.out.println("绉诲姩鎴愬姛");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 	}
 	/**
-	 * 锟斤拷锟捷讹拷锟斤拷锟斤拷锟斤拷薷锟斤拷酆锟斤拷
+	 * 閿熸枻鎷烽敓鎹疯鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹钖烽敓鏂ゆ嫹閰嗛敓鏂ゆ嫹
 	 * 
 	 * @param orderId,finalPrice
 	 * @return
 	 */
 	public static String updateFinalPrice(String orderId, String finalPrice) {
-		// 锟斤拷锟�
+		// update Final Price
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
@@ -158,19 +159,58 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("锟桔猴拷锟斤拷薷某锟斤拷锟斤拷锟�");
-			System.out.println("锟桔猴拷锟斤拷薷某锟斤拷锟�");
+			rb.setErrorMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿熸枻鎷烽敓锟�");
+			System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿燂拷");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("锟桔猴拷锟斤拷薷某晒锟�");
-		System.out.println("锟桔猴拷锟斤拷薷某晒锟�");
+		rb.setSuccessMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
+		System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
+	}
+	
+	public static String createGroupId(String groupId) {
+		// 新建团号
+		
+		if (OrderOperationDao.getGroupId(group) =='unknown') {
+			return
+		}
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		//PreparedStatement pstmLog = null;
+		ResponseBean rb = new ResponseBean();
+		String updateSql = "UPDATE bd_dw_dcm_order_record r set r.FINAL_PRICE = ? where r.ORDER_ID = ? ";
+		try {
+			conn = DBUtils.getDBConnection();
+			pstm = conn.prepareStatement(updateSql);
+			pstm.setFloat(1, Float.parseFloat(finalPrice));
+			pstm.setInt(2, Integer.parseInt(orderId));
+			pstm.addBatch();
+			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
+			pstm.executeBatch();
+		} catch (Exception e) {
+			e.printStackTrace();
+			rb.setErrorMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿熸枻鎷烽敓锟�");
+			System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿燂拷");
+			rb.setSuccess(false);
+			String result = StringUtils.listToJson(rb, false);
+			return result;
+		} finally {
+			DBUtils.release(pstm, null, conn);
+		}
+		rb.setSuccessMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
+		System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
+		rb.setSuccess(true);
+
+		String result = StringUtils.listToJson(rb, false);
+		return result;
+		
+		return true;
 	}
 }

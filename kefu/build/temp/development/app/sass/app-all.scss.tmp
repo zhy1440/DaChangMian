@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'app' );
-$image-search-path: 'C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/development/app/resources';
+$image-search-path: 'C:/Users/Administrator/workspace/DcmWorkspace/kefu/build/development/app/resources';
 $theme-name:  dynamic( 'my-classic-theme' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;

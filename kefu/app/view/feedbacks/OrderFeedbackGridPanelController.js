@@ -6,9 +6,8 @@ Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
     alias : 'controller.orderFeedback',
 
     updateOrderType: function(orderIds, orderType) {
-        //alert(orderIds);
         Ext.Ajax.request({
-            url: './feedbacks',//部署后需要修改
+            url: './feedbacks',
             method : 'POST',
             waitMsg : 'Submitting your data...',
             params: {

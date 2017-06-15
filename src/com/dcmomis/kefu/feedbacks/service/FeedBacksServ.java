@@ -60,11 +60,19 @@ public class FeedBacksServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("updateFinalPrice")) {
-			//移动订单记录
+			//修改价格
 			try {
 				String orderId = (String) request.getParameter("orderId");
 				String finalPrice = (String) request.getParameter("finalPrice");
 				output = FeedBacksDao.updateFinalPrice(orderId,finalPrice);
+			} catch (Exception e) {
+			} finally {
+			}
+		} else if (action.equals("createGroupId")) {
+			//新建团号
+			try {
+				String groupId = (String) request.getParameter("groupId");
+				output = FeedBacksDao.createGroupId(groupId);
 			} catch (Exception e) {
 			} finally {
 			}
