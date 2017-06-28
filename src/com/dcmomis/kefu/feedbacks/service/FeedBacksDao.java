@@ -121,16 +121,16 @@ public class FeedBacksDao {
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("绉诲姩澶辫触");
-			System.out.println("绉诲姩澶辫触");
+			rb.setErrorMsg("移动失败");
+			System.out.println("移动失败");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("绉诲姩鎴愬姛");
-		System.out.println("绉诲姩鎴愬姛");
+		rb.setSuccessMsg("移动成功");
+		System.out.println("移动成功");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
@@ -177,14 +177,17 @@ public class FeedBacksDao {
 	
 	public static String createGroupId(String groupId) {
 		// 新建团号
-		
-		if (OrderOperationDao.getGroupId(group) =='unknown') {
-			return
+		ResponseBean rb = new ResponseBean();
+		String rstGroupId = OrderOperationDao.getGroupId(groupId);
+		if (rstGroupId !="unknown") {
+			rb.setErrorMsg("团号"+rstGroupId+"已存在");
+			rb.setSuccess(false);
+			String result = StringUtils.listToJson(rb, false);
+			return result;
 		}
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
-		ResponseBean rb = new ResponseBean();
 		String updateSql = "UPDATE bd_dw_dcm_order_record r set r.FINAL_PRICE = ? where r.ORDER_ID = ? ";
 		try {
 			conn = DBUtils.getDBConnection();
