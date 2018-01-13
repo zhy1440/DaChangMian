@@ -91,12 +91,12 @@ public class ImageUploadServ extends HttpServlet {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("ͼƬ�ϴ�ʧ�ܣ�");
+			rb.setErrorMsg("图片上传失败！");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			out.print(result);
 		}
-		rb.setSuccessMsg("ͼƬ�ϴ��ɹ���");
+		rb.setSuccessMsg("图片上传成功！");
 		rb.setSuccess(true);
 		String result = StringUtils.listToJson(rb, false);
 		out.print(result);

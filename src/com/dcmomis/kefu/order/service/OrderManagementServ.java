@@ -45,7 +45,7 @@ public class OrderManagementServ extends HttpServlet {
 		// found',portOfLoading: 'This field must not be null'}}";
 		String output = OrderOperationDao.placeOrderRecord(orb);
 		
-		// jsonp‘O÷√
+		// jsonpË®≠ÁΩÆ
 		boolean jsonP = false;
 		String cb = request.getParameter("callback");
 		if (cb != null) {

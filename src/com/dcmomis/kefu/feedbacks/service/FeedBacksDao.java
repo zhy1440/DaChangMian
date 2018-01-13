@@ -192,10 +192,10 @@ public class FeedBacksDao {
 		try {
 			conn = DBUtils.getDBConnection();
 			pstm = conn.prepareStatement(updateSql);
-			pstm.setFloat(1, Float.parseFloat(finalPrice));
-			pstm.setInt(2, Integer.parseInt(orderId));
+//			pstm.setFloat(1, Float.parseFloat(finalPrice));
+//			pstm.setInt(2, Integer.parseInt(orderId));
 			pstm.addBatch();
-			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
+//			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,6 +214,6 @@ public class FeedBacksDao {
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 		
-		return true;
+//		return true;
 	}
 }

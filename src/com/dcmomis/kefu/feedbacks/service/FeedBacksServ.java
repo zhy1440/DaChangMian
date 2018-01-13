@@ -43,7 +43,7 @@ public class FeedBacksServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("queryOrderRecordbyUid")) {
-			//¸ù¾İÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓĞ¶©µ¥¼ÇÂ¼
+			//æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢è¯¥ç”¨æˆ·æ‰€æœ‰è®¢å•è®°å½•
 			try {
 				String id = (String) request.getParameter("uid");
 				output = OrderOperationDao.queryOrderRecordbyUid(id);
@@ -51,7 +51,7 @@ public class FeedBacksServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("updateOrderType")) {
-			//ÒÆ¶¯¶©µ¥¼ÇÂ¼
+			//ç§»åŠ¨è®¢å•è®°å½•
 			try {
 				String orderId = (String) request.getParameter("orderId");
 				String orderType = (String) request.getParameter("orderType");
@@ -60,7 +60,7 @@ public class FeedBacksServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("updateFinalPrice")) {
-			//ĞŞ¸Ä¼Û¸ñ
+			//ä¿®æ”¹ä»·æ ¼
 			try {
 				String orderId = (String) request.getParameter("orderId");
 				String finalPrice = (String) request.getParameter("finalPrice");
@@ -69,7 +69,7 @@ public class FeedBacksServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("createGroupId")) {
-			//ĞÂ½¨ÍÅºÅ
+			//æ–°å»ºå›¢å·
 			try {
 				String groupId = (String) request.getParameter("groupId");
 				output = FeedBacksDao.createGroupId(groupId);
@@ -78,7 +78,7 @@ public class FeedBacksServ extends HttpServlet {
 			}
 		}
 		
-		// jsonpÉèÖÃ
+		// jsonpè®¾ç½®
 		boolean jsonP = false;
 		String cb = request.getParameter("callback");
 		if (cb != null) {

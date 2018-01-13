@@ -16,7 +16,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class NaviTreeDao {
 	/**
-	 * ²éÑ¯×Ó½Úµã
+	 * æŸ¥è¯¢å­èŠ‚ç‚¹
 	 * 
 	 * @param node
 	 * @return
@@ -34,7 +34,7 @@ public class NaviTreeDao {
 		Statement stm = null;
 		ResultSet result = null;
 		String[] p = node.split("#");
-		String parent = p[p.length-1];//´¦Àíparent
+		String parent = p[p.length-1];//å¤„ç†parent
 		String queryString01 = "SELECT DISTINCT r.GROUP_ID, dic.DIC_NAME as GROUP_NAME "
 				+ "FROM bd_dw_dcm_order_record r "
 				+ "LEFT JOIN bd_dic_dcm_common dic ON r.GROUP_ID = dic.DIC_VALUE "

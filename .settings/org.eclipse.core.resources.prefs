@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/com/dcmomis/kefu/feedbacks/service/FeedBacksDao.java=UTF-8
+encoding//src/com/dcmomis/order/service/OrderOperationDao.java=UTF-8
 encoding//src/config.properties=UTF-8
-encoding/<project>=GBK
+encoding/<project>=UTF-8
