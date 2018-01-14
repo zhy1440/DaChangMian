@@ -2,13 +2,13 @@
  * This view is an example list of people.
  */
 //var toolbar = 
-Ext.define('app.view.feedbacks.OrderFeedbackGridPanel', {
+Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
     extend: 'Ext.grid.Panel',
     xtype: 'orderfeedbackgrid',
     ui: 'dark',
     requires: [
         'app.store.feedbacks.OrderFeedbackRecord',
-        'app.view.ordermngt.OrderPlaceController'
+        'app.view.order.place.OrderPlaceController'
     ],
     controller : 'orderFeedback',
 

@@ -2,10 +2,10 @@
  * This view is for customer to place an order.
  */
 var redStar = '<font color = "red">*</font>';
-Ext.define('app.view.ordermngt.OrderPlace', {
+Ext.define('app.view.order.place.OrderPlace', {
 			extend : 'Ext.form.FormPanel',
 			xtype : 'orderplace',
-			requires : ['app.view.ordermngt.OrderPlaceController'],
+			requires : ['app.view.order.place.OrderPlaceController'],
 			controller : 'orderPlace',
 
 			// The form will submit an AJAX request to this URL when
@@ -14,7 +14,6 @@ Ext.define('app.view.ordermngt.OrderPlace', {
 
 			ui : 'dark',
 			aligh: 'center',
-			//title : '<a name="orderPlace"></a>',
 			defaultType : 'textfield',
 			buttonAlign : 'center',
 			frame : true,
@@ -120,29 +119,16 @@ Ext.define('app.view.ordermngt.OrderPlace', {
 						id : 'image',
 						margin : '0 0 0 5',
 						width : 250,
-						// height: 500,
-						// src
-						// :'https://gdp.alicdn.com/imgextra/i4/2456386471/TB2PKCToFXXXXaKXpXXXXXXXXXX_!!2456386471.jpg',
 						maxWidth : 250,
 						maxHeight : 500
 					}
-			/*
-			 * , { name : 'picture', fieldLabel : '网络图片', allowBlank : false }, {
-			 * xtype: 'filefield', name: 'photo', fieldLabel: '本地图片',
-			 * //labelWidth: 0, msgTarget: 'side', buttonText: '选择图片' }, { xtype :
-			 * 'image', name : 'image', id : 'image', // src :
-			 * 'http://www.sencha.com/img/20110215-feat-html5.png', width : 184,
-			 * height : 90 }, { xtype : 'button', text : '显示图片', handler :
-			 * 'onImgDispClick' }
-			 */
 			],
 
 			buttons : [{
 						id : 'okOrder',
 						text : '确认下单',
-						formBind : true, // only enabled once the form is
-						// valid
-						handler : 'onOkOrderClick'
+						formBind : true, 
+						handler : 'onOkClick'
 					}, {
 						id : 'reset',
 						text : '重置',

@@ -1,7 +1,7 @@
 /**
  * This view is navitree on orderFeedbacks page.
  */
-Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
+Ext.define('app.view.order.feedbacks.OrderFeedbackNaviTreePanel', {
 	extend: 'Ext.tree.Panel',
 	xtype: 'orderfeedbacknavitree',
 	requires: ['app.model.naviTree.OrderFeedbacksNavi'],
@@ -39,9 +39,8 @@ Ext.define('app.view.feedbacks.OrderFeedbackNaviTreePanel', {
 		'itemclick': function(record, index) {
 			if (index.raw.leaf == true) {
 				var me = this;
-				//alert(index.raw.id);
 				Ext.Ajax.request({
-					url: './feedbacks',//部署后需要修改
+					url: './feedbacks',
 					params: {
 						action: 'getOrderList',
 						node: index.raw.id

@@ -21,6 +21,32 @@
 		<servlet-name>ContactServlet</servlet-name>
 		<url-pattern>/contact</url-pattern>
 	</servlet-mapping>
+	
+	<!--image upload -->
+	<servlet>
+		<servlet-name>ImageUploadServ</servlet-name>
+		<servlet-class>com.dcmomis.common.service.ImageUploadServ</servlet-class>
+		<!-- 设置初始化参数 -->
+		<init-param>
+			<param-name>picPath</param-name>
+			<param-value>DcmWorkspace\kefu\downloadpic\</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageUploadServ</servlet-name>
+		<url-pattern>/ImageUpload</url-pattern>
+	</servlet-mapping>
+	
+	<!--orderplace_kefu -->
+	<servlet>
+		<servlet-name>OrderPlaceServ</servlet-name>
+		<servlet-class>com.dcmomis.order.service.OrderPlaceServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderPlaceServ</servlet-name>
+		<url-pattern>/orderPlace</url-pattern>
+	</servlet-mapping>
+	
 	<!-- order operation -->
 	<servlet>
 		<servlet-name>OrderOperationServ</servlet-name>
@@ -30,21 +56,7 @@
 		<servlet-name>OrderOperationServ</servlet-name>
 		<url-pattern>/OrderOperation</url-pattern>
 	</servlet-mapping>
-	<!--image upload -->
-	<servlet>
-		<servlet-name>ImageUploadServ</servlet-name>
-		<servlet-class>com.dcmomis.order.service.ImageUploadServ</servlet-class>
-		　　<!-- 设置初始化参数 -->
-		<init-param>
-			<param-name>picPath</param-name>
-			<param-value>DcmWorkspace\kefu\downloadpic\</param-value>
-		</init-param>
-    
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ImageUploadServ</servlet-name>
-		<url-pattern>/ImageUpload</url-pattern>
-	</servlet-mapping>
+
 	<!-- Customer Management -->
 	<servlet>
 		<servlet-name>CustomerManagementServ</servlet-name>
@@ -90,13 +102,5 @@
 		<servlet-name>FeedBacksServ</servlet-name>
 		<url-pattern>/feedbacks</url-pattern>
 	</servlet-mapping>
-	<!--orderplace_kefu -->
-	<servlet>
-		<servlet-name>OrderOperationServ</servlet-name>
-		<servlet-class>com.dcmomis.order.service.OrderOperationServ</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>OrderOperationServ</servlet-name>
-		<url-pattern>/orderPlaceKefu</url-pattern>
-	</servlet-mapping>
+
 </web-app>

@@ -1,4 +1,4 @@
-Ext.define('app.view.feedbacks.OrderFeedbackMasterPanelController', {
+Ext.define('app.view.order.feedbacks.OrderFeedbackMasterPanelController', {
     extend : 'Ext.app.ViewController',
     alias : 'controller.orderFeedbackMaster',
 
@@ -6,7 +6,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackMasterPanelController', {
         Ext.Ajax.request({
             url: './feedbacks',
             method : 'POST',
-            waitMsg : 'Submitting your data...',
+            waitMsg : '正在新建团号。。。',
             params: {
                 action: 'createGroupId',
                 orderId: orderIds,
@@ -15,7 +15,7 @@ Ext.define('app.view.feedbacks.OrderFeedbackMasterPanelController', {
             success : function(response) {
                 var result = Ext.decode(response.responseText);
                 Ext.Msg.show({
-                    title : '提交成功',
+                    title : '创建成功',
                     message : result.successMsg,
                     buttons : Ext.Msg.OK,
                     icon : Ext.Msg.QUESTION

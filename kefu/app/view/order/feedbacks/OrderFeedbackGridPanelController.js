@@ -1,7 +1,7 @@
 /**
  * This view is an example list of people.
  */
-Ext.define('app.view.feedbacks.OrderFeedbackGridPanelController', {
+Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanelController', {
     extend : 'Ext.app.ViewController',
     alias : 'controller.orderFeedback',
 
