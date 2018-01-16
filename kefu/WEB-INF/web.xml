@@ -40,7 +40,7 @@
 	<!--orderplace_kefu -->
 	<servlet>
 		<servlet-name>OrderPlaceServ</servlet-name>
-		<servlet-class>com.dcmomis.order.service.OrderPlaceServ</servlet-class>
+		<servlet-class>com.dcmomis.order.place.service.OrderPlaceServ</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>OrderPlaceServ</servlet-name>
@@ -57,6 +57,25 @@
 		<url-pattern>/OrderOperation</url-pattern>
 	</servlet-mapping>
 
+	<!-- Navi Tree -->
+	<servlet>
+		<servlet-name>NaviTreeServ</servlet-name>
+		<servlet-class>com.dcmomis.kefu.service.NaviTreeServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NaviTreeServ</servlet-name>
+		<url-pattern>/getNaviTree</url-pattern>
+	</servlet-mapping>
+	
+	<!--Feedbacks -->
+	<servlet>
+		<servlet-name>FeedBacksServ</servlet-name>
+		<servlet-class>com.dcmomis.order.feedbacks.service.FeedBacksServ</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FeedBacksServ</servlet-name>
+		<url-pattern>/feedbacks</url-pattern>
+	</servlet-mapping>
 	<!-- Customer Management -->
 	<servlet>
 		<servlet-name>CustomerManagementServ</servlet-name>
@@ -83,24 +102,6 @@
 	<servlet-mapping>
 		<servlet-name>AddressManagementServ</servlet-name>
 		<url-pattern>/addrManagement</url-pattern>
-	</servlet-mapping>
-	<!-- Navi Tree -->
-	<servlet>
-		<servlet-name>NaviTreeServ</servlet-name>
-		<servlet-class>com.dcmomis.kefu.service.NaviTreeServ</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>NaviTreeServ</servlet-name>
-		<url-pattern>/getNaviTree</url-pattern>
-	</servlet-mapping>
-	<!--Feedbacks -->
-	<servlet>
-		<servlet-name>FeedBacksServ</servlet-name>
-		<servlet-class>com.dcmomis.kefu.feedbacks.service.FeedBacksServ</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>FeedBacksServ</servlet-name>
-		<url-pattern>/feedbacks</url-pattern>
 	</servlet-mapping>
 
 </web-app>

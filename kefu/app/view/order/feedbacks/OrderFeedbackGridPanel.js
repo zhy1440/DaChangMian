@@ -28,12 +28,11 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
             Ext.create('Ext.grid.plugin.CellEditing', {
                 clicksToEdit: 1,
                 listeners: {
-                    edit: 'OnEdit'
+                    edit: 'onEdit'
                 }
             })
         ],
     dockedItems: Ext.create('Ext.toolbar.Toolbar', {
-            //renderTo: document.body,
             id: 'feedbacksToolbar',
             width: 500,
             items: [{
@@ -64,17 +63,21 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
                         items: [
                             // these will render as dropdown menu items when the arrow is clicked:
                             {
+                                index: 0,
                                 text: '待拼',
-                                handler: 'onDaiPinClick'
+                                handler: 'onOrderTypeSelect'
                             }, {
+                                index: 1,
                                 text: '可下单',
-                                handler: 'onKeXiaDanClick'
+                                handler: 'onOrderTypeSelect'
                             }, {
+                                index: 2,
                                 text: '已成团',
-                                handler: 'onYiChengTuanClick'
+                                handler: 'onOrderTypeSelect'
                             }, {
+                                index: 3,
                                 text: '流团',
-                                handler: 'onLiuTuanClick'
+                                handler: 'onOrderTypeSelect'
                             }
                         ]
                     })
@@ -95,7 +98,6 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
             dataIndex: 'orderTime',
             hidden: true
         },
-        /*        { text: '团号（id）', dataIndex: 'groupId', flex: 1 },*/
         {
             text: '顾客id',
             dataIndex: 'cstId',
@@ -117,7 +119,6 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
             },*/
             width: 250
         },
-        /*        { text: '商品中文描述', dataIndex: 'commodityDesc', flex: 1 },*/
         {
             text: '单价',
             dataIndex: 'unitPrice',
@@ -170,7 +171,5 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanel', {
             dataIndex: 'picture',
             flex: 1
         }
-        //        { text: '国际运费', dataIndex: 'overseasFreigh', flex: 1 },
-        //        { text: '国内运费', dataIndex: 'inlandFreigh', flex: 1 }
     ]
 });

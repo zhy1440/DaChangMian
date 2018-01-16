@@ -1,4 +1,4 @@
-package com.dcmomis.kefu.feedbacks.service;
+package com.dcmomis.order.feedbacks.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,17 +18,17 @@ import com.dcmomis.utils.StringUtils;
 
 public class FeedBacksDao {
 	/**
-	 * 閿熸枻鎷疯閿熸帴鑺傜鎷�
+	 * 根据点击的节点获取订单
 	 * 
 	 * @param node
 	 * @return
 	 */
-	public static String getOrderList(String node) {
+	public static String getOrderListbyTreeNode(String node) {
 		// TODO Auto-generated method stub
 		String result = null;
-
-		String[] p = node.split("#");
-
+		
+		// node格式：orderType#yyyy#yyyy-mm#yyyy-mm-dd#groupId
+		String[]  p= node.split("#");
 		String orderType = p[0];
 		String groupId = p[p.length - 1];
 		String queryString = "SELECT "
@@ -36,6 +36,7 @@ public class FeedBacksDao {
 				+ "UNIT_PRICE, AMOUNT, UNIT_PRICE*AMOUNT*DISCOUNT_FINAL AS TOTAL_PRICE, GOODS_COLOR, GOODS_SIZE, FINAL_PRICE, DISCOUNT_FINAL, "
 				+ "COMMENTS, PICTURE, OVERSEAS_FREIGH, INLAND_FREIGH " + "FROM BD_DW_DCM_ORDER_RECORD "
 				+ "WHERE ORDER_TYPE = '" + orderType + "' AND GROUP_ID = '" + groupId;
+		
 		if (5 == p.length) {
 			String date = p[p.length - 2];
 			queryString = queryString + "' AND SUBSTR(ORDER_TIME, 1, 10) = '" + date;
@@ -43,14 +44,11 @@ public class FeedBacksDao {
 		queryString = queryString + "' ORDER BY ORDER_ID DESC";
 		List<OrderRecordBean> orderRecordList = getOrderRecordList(queryString);
 		result = StringUtils.listToJson(orderRecordList, true);
-
-		// List<TreeNodeBean> childNodesBean = getChildNodesbyParant(node);
-		// result = StringUtils.listToJson("children", childNodesBean);
 		return result;
 	}
 
 	/**
-	 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺煫浼欐嫹id閿熸枻鎷疯閿熸枻鎷烽敓鐭紮鎷烽敓鏂ゆ嫹閿熷彨璁规嫹閿熸枻鎷烽敓鏂ゆ嫹褰昹ist
+	 *  根据sql查询订单记录
 	 * 
 	 * @param id
 	 * @return
@@ -100,9 +98,9 @@ public class FeedBacksDao {
 	}
 
 	/**
-	 * 閿熸枻鎷烽敓鎹疯鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹钖蜂憨閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
+	 * 更改某条订单的订单类型
 	 * 
-	 * @param orderId,orderType
+	 * @param orderId, orderType
 	 * @return
 	 */
 	public static String updateOrderType(String orderId, String orderType) {
@@ -137,7 +135,7 @@ public class FeedBacksDao {
 		return result;
 	}
 	/**
-	 * 閿熸枻鎷烽敓鎹疯鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹钖烽敓鏂ゆ嫹閰嗛敓鏂ゆ嫹
+	 * 修改折后价
 	 * 
 	 * @param orderId,finalPrice
 	 * @return
@@ -155,20 +153,20 @@ public class FeedBacksDao {
 			pstm.setFloat(1, Float.parseFloat(finalPrice));
 			pstm.setInt(2, Integer.parseInt(orderId));
 			pstm.addBatch();
-			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
+			System.out.println("=== 修改折后价sql =====>: " + updateSql + " ===> 修改值：" + finalPrice + " ===> 订单号：" + Integer.parseInt(orderId));
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿熸枻鎷烽敓锟�");
-			System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿燂拷");
+			rb.setErrorMsg("折后价修改失败");
+			System.out.println("折后价修改失败");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
-		System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
+		rb.setSuccessMsg("折后价修改成功");
+		System.out.println("折后价修改成功");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);

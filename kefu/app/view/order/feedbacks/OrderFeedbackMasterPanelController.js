@@ -2,7 +2,7 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackMasterPanelController', {
     extend : 'Ext.app.ViewController',
     alias : 'controller.orderFeedbackMaster',
 
-    onNewGrouIdClick: function() {
+    onCreateGrouIdClick: function() {
         Ext.Ajax.request({
             url: './feedbacks',
             method : 'POST',

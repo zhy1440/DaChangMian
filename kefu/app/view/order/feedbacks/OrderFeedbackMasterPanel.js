@@ -26,7 +26,7 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackMasterPanel', {
         items: [{
             xtype: 'button',
             text: '新增团号',
-            handler: 'onNewGrouIdClick'
+            handler: 'onCreateGrouIdClick'
         }, {
             id: 'orderFeedbackNaviTree',
             xtype: 'orderfeedbacknavitree',
