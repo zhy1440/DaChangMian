@@ -44,7 +44,7 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackMasterPanelController', {
             waitMsg : '正在新建团号。。。',
             params: {
                 action: 'createGroupId',
-                groupId: groupId,
+                groupId: groupId
             },
 
             success : function(response) {
