@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dcmomis.common.ResponseBean;
-import com.dcmomis.common.TreeNodeBean;
 import com.dcmomis.order.OrderRecordBean;
-import com.dcmomis.order.service.OrderOperationDao;
-import com.dcmomis.user.CustomerAddrBean;
+import com.dcmomis.order.place.service.OrderPlaceDao;
 import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.DicUtils;
 import com.dcmomis.utils.StringUtils;
@@ -173,12 +171,17 @@ public class FeedBacksDao {
 		return result;
 	}
 	
+	/**
+	 * 创建团号
+	 * @param groupId
+	 * @return
+	 */
 	public static String createGroupId(String groupId) {
 		// 新建团号
 		ResponseBean rb = new ResponseBean();
-		String rstGroupId = OrderOperationDao.getGroupId(groupId);
+		String rstGroupId = OrderPlaceDao.getGroupId(groupId);
 		if (rstGroupId !="unknown") {
-			rb.setErrorMsg("团号"+rstGroupId+"已存在");
+			rb.setErrorMsg("团号"+ groupId +"已存在");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
@@ -186,32 +189,29 @@ public class FeedBacksDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
-		String updateSql = "UPDATE bd_dw_dcm_order_record r set r.FINAL_PRICE = ? where r.ORDER_ID = ? ";
+		String updateSql = "INSERT INTO bd_dic_dcm_common (DIC_VALUE, DIC_NAME, DIC_TYPE, DIC_TYPE_DESC) VALUES (?, ?, 'GROUP_ID', '团号');";
 		try {
 			conn = DBUtils.getDBConnection();
 			pstm = conn.prepareStatement(updateSql);
-//			pstm.setFloat(1, Float.parseFloat(finalPrice));
-//			pstm.setInt(2, Integer.parseInt(orderId));
+			pstm.setString(1, groupId);
+			pstm.setString(2, groupId);
 			pstm.addBatch();
-//			System.out.println("zyDebug---------:" + updateSql + "--------------" + finalPrice + "----------" + Integer.parseInt(orderId));
 			pstm.executeBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿熸枻鎷烽敓锟�");
-			System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愰敓鏂ゆ嫹閿燂拷");
+			rb.setErrorMsg("创建失败!");
+			System.out.println("===> 团号创建失败!");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
-		System.out.println("閿熸鐚存嫹閿熸枻鎷疯柗鏌愭檼閿燂拷");
+		rb.setSuccessMsg("创建成功!");
+		System.out.println("===> 团号创建成功!");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
-		
-//		return true;
 	}
 }
