@@ -138,13 +138,13 @@ public class OrderPlaceDao {
 		if (-1 != num) {
 			ws_path = ws_path.substring(1, num);
 		} else {
-			int n = ws_path.indexOf("DcmWorkspace");
+			int n = ws_path.indexOf("WEB-INF");
 			ws_path = ws_path.substring(1, n);
 		}
 		System.out.println(ws_path);
 
-		String path = ws_path.replace('/', '\\') + "DcmWorkspace\\kefu\\downloadpic\\";
-		System.out.println(path);
+		String path = ws_path.replace('/', '\\') + "\\";
+		System.out.println("===> Final path:" + path);
 		String fileName = df.format(new Date()) + ".jpg";
 		File imageFile = new File(path + fileName);
 		

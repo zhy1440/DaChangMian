@@ -1,16 +1,12 @@
 package com.dcmomis.kefu.order.service;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dcmomis.common.ResponseBean;
-import com.dcmomis.common.TreeNodeBean;
 import com.dcmomis.order.OrderRecordBean;
-import com.dcmomis.user.CustomerAddrBean;
 import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.DicUtils;
 import com.dcmomis.utils.StringUtils;

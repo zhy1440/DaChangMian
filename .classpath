@@ -13,14 +13,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-collections-3.2.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-fileupload-1.3.1.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-io-2.5.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/commons-logging-4.0.6.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="kefu/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>
-	<classpathentry kind="output" path="kefu/WEB-INF/classes"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/commons-logging-4.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/production/app/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="output" path="kefu/build/production/app/WEB-INF/classes"/>
 </classpath>

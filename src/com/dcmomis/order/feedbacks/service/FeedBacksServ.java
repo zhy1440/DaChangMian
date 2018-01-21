@@ -2,21 +2,11 @@ package com.dcmomis.order.feedbacks.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.dcmomis.order.OrderRecordBean;
-import com.dcmomis.order.service.OrderOperationDao;
-import com.dcmomis.utils.DBUtils;
-import com.dcmomis.utils.StringUtils;
 
 public class FeedBacksServ extends HttpServlet {
 	// execute GET request
