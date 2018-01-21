@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'app' );
-$image-search-path: 'C:/Users/Administrator/workspace/DcmWorkspace/kefu/build/development/app/resources';
+$image-search-path: 'C:/Users/Cathy/workspace/DcmWorkspace/kefu/build/development/app/resources';
 $theme-name:  dynamic( 'my-classic-theme' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;
@@ -870,17 +870,18 @@ $include-app-store-order-customerorderrecord: dynamic(true);;
 $include-app-store-order-orderrecord: dynamic(true);;
 $include-app-store-user-customerinfo: dynamic(true);;
 $include-app-view-admin-user-customerinfolist: dynamic(true);;
-$include-app-view-feedbacks-orderfeedbackgridpanel: dynamic(true);;
-$include-app-view-feedbacks-orderfeedbackgridpanelcontroller: dynamic(true);;
-$include-app-view-feedbacks-orderfeedbackmasterpanel: dynamic(true);;
-$include-app-view-feedbacks-orderfeedbacknavitreepanel: dynamic(true);;
 $include-app-view-login-login: dynamic(true);;
 $include-app-view-login-logincontroller: dynamic(true);;
 $include-app-view-main-main: dynamic(true);;
 $include-app-view-main-maincontroller: dynamic(true);;
 $include-app-view-main-mainmodel: dynamic(true);;
-$include-app-view-ordermngt-orderplace: dynamic(true);;
-$include-app-view-ordermngt-orderplacecontroller: dynamic(true);;
+$include-app-view-order-feedbacks-orderfeedbackgridpanel: dynamic(true);;
+$include-app-view-order-feedbacks-orderfeedbackgridpanelcontroller: dynamic(true);;
+$include-app-view-order-feedbacks-orderfeedbackmasterpanel: dynamic(true);;
+$include-app-view-order-feedbacks-orderfeedbackmasterpanelcontroller: dynamic(true);;
+$include-app-view-order-feedbacks-orderfeedbacknavitreepanel: dynamic(true);;
+$include-app-view-order-place-orderplace: dynamic(true);;
+$include-app-view-order-place-orderplacecontroller: dynamic(true);;
 $output-paths: ("path": "../resources");
 
 /* ======================== ETC ======================== */

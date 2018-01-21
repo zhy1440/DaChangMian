@@ -34,7 +34,7 @@ public class OrderOperationServ extends HttpServlet {
 			} finally {
 			}
 		} else if (action.equals("queryOrderRecordbyUid")) {
-			//¸ù¾İÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓĞ¶©µ¥¼ÇÂ¼
+			//æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢è¯¥ç”¨æˆ·æ‰€æœ‰è®¢å•è®°å½•
 			try {
 				String id = (String) request.getParameter("uid");
 				output = OrderOperationDao.queryOrderRecordbyUid(id);

@@ -15,7 +15,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class AddressManagementDao {
 	public static String placeOrderRecord(OrderRecordBean orb) {
-		// Èë¿â
+		// å…¥åº“
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResponseBean rb = new ResponseBean();
@@ -50,23 +50,23 @@ public class AddressManagementDao {
 			// return customerInfoList;
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("³ö´íÀ²");
+			rb.setErrorMsg("å‡ºé”™å•¦");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("ÏÂµ¥³É¹¦,ÊÇ·ñÌø×ªµ½¶©µ¥¹ÜÀí£¿");
+		rb.setSuccessMsg("ä¸‹å•æˆåŠŸ,æ˜¯å¦è·³è½¬åˆ°è®¢å•ç®¡ç†ï¼Ÿ");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 	}
 
-/***********************************ÎÒÊÇĞÂÎÄ¼ş¿ªÊ¼µÄ·Ö¸îÏß****************************************************************/
+/***********************************æˆ‘æ˜¯æ–°æ–‡ä»¶å¼€å§‹çš„åˆ†å‰²çº¿****************************************************************/
 /**
- * ²éÑ¯
+ * æŸ¥è¯¢
  * @param uid
  * @return
  */
@@ -107,12 +107,12 @@ public class AddressManagementDao {
 	}
 	
 	/**
-	 * ĞÂÔöµØÖ·
+	 * æ–°å¢åœ°å€
 	 * @param customerAddr
 	 * @return
 	 */
 	public static String insertCustomerAddrByUid(CustomerAddrBean customerAddr) {
-		// Èë¿â
+		// å…¥åº“
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResponseBean rb = new ResponseBean();
@@ -131,14 +131,14 @@ public class AddressManagementDao {
 			// return customerInfoList;
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("³ö´íÀ²");
+			rb.setErrorMsg("å‡ºé”™å•¦");
 			rb.setSuccess(false);
 			String result = StringUtils.listToJson(rb, false);
 			return result;
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("Ìí¼Ó³É¹¦");
+		rb.setSuccessMsg("æ·»åŠ æˆåŠŸ");
 		rb.setSuccess(true);
 
 		String result = StringUtils.listToJson(rb, false);
@@ -184,13 +184,13 @@ public class AddressManagementDao {
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			rb.setErrorMsg("³ö´íÀ²");
+			rb.setErrorMsg("å‡ºé”™å•¦");
 			rb.setSuccess(false);
 			return StringUtils.listToJson(rb, false);
 		} finally {
 			DBUtils.release(pstm, null, conn);
 		}
-		rb.setSuccessMsg("É¾³ı³É¹¦");
+		rb.setSuccessMsg("åˆ é™¤æˆåŠŸ");
 		rb.setSuccess(true);
 
 		return StringUtils.listToJson(rb, false);

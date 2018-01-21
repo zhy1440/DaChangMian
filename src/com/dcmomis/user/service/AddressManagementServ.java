@@ -31,7 +31,7 @@ public class AddressManagementServ extends HttpServlet {
 		if (action.equals("getCustomerAddrByUid")) {
 			try {
 				String uid = (String) request.getParameter("uid");
-				output = AddressManagementDao.getCustomerAddrByUid(uid);//查询该uid下的地址列表
+				output = AddressManagementDao.getCustomerAddrByUid(uid);//鏌ヨ璇id涓嬬殑鍦板潃鍒楄〃
 			} catch (Exception e) {
 			} finally {
 			}
@@ -69,7 +69,7 @@ public class AddressManagementServ extends HttpServlet {
 			}
 		} else if (action.equals("deleteCustomerAddrByUid")) {
 			try {
-				//删除指定用户地址
+				//鍒犻櫎鎸囧畾鐢ㄦ埛鍦板潃
 				String uid = (String) request.getParameter("uid");
 				String rowIdInner = (String) request.getParameter("rowIdInner");				
 				output = AddressManagementDao.deleteCustomerAddrByUid(uid,rowIdInner);

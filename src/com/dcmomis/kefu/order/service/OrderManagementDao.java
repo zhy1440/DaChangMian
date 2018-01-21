@@ -17,7 +17,7 @@ import com.dcmomis.utils.StringUtils;
 
 public class OrderManagementDao {
 	/**
-	 * ²éÑ¯×Ó½Úµã
+	 * æŸ¥è¯¢å­èŠ‚ç‚¹
 	 * 
 	 * @param node
 	 * @return
@@ -49,7 +49,7 @@ public class OrderManagementDao {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§id²éÑ¯¸ÃÓÃ»§ËùÓĞ¶©µ¥¼ÇÂ¼list
+	 * æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢è¯¥ç”¨æˆ·æ‰€æœ‰è®¢å•è®°å½•list
 	 * 
 	 * @param id
 	 * @return

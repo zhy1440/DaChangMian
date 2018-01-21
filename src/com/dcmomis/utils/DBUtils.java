@@ -11,10 +11,10 @@ public class DBUtils {
 	public static Connection getDBConnection() {
 		Connection con = null;
 		try {
-			Class.forName(CLASSFORNAME);// ¶¯Ì¬¼ÓÔØmysqlÇý¶¯
-			// Ò»¸öConnection´ú±íÒ»¸öÊý¾Ý¿âÁ¬½Ó
+			Class.forName(CLASSFORNAME);// åŠ¨æ€åŠ è½½mysqlé©±åŠ¨
+			// ä¸€ä¸ªConnectionä»£è¡¨ä¸€ä¸ªæ•°æ®åº“è¿žæŽ¥
 			con = DriverManager.getConnection(SERVANDDB, USER, PWD);
-			//System.out.println("³É¹¦getConnection");
+			//System.out.println("æˆåŠŸgetConnection");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class DBUtils {
 				if (!conn.isClosed()) {
 					conn.close();
 				}
-				//System.out.println("³É¹¦release Connection");
+				//System.out.println("æˆåŠŸrelease Connection");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

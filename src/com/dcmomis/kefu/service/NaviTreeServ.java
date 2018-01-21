@@ -25,6 +25,8 @@ public class NaviTreeServ extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		System.out.println("=== Get Navi Tree ======>");
+		
 		String output = null;
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
@@ -33,7 +35,7 @@ public class NaviTreeServ extends HttpServlet {
 		boolean jsonP = false;
 		
 		output = NaviTreeDao.getChildren(node);
-		System.out.println(node);
+		System.out.println("NODE ===> " + node);
 		String cb = request.getParameter("callback");
 		if (cb != null) {
 			jsonP = true;
@@ -49,9 +51,7 @@ public class NaviTreeServ extends HttpServlet {
 			pw.write(");");
 		}
 
-		System.out.println(output);
-		// pw.write(this.data());
-		pw.flush();
+		System.out.println("RESULT ===>" + output);
 		pw.close();
 
 	}
