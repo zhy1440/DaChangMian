@@ -143,7 +143,7 @@ public class OrderPlaceDao {
 		}
 		System.out.println(ws_path);
 
-		String path = ws_path.replace('/', '\\') + "\\";
+		String path = ws_path.replace('/', '\\') + "downloadpic\\";
 		System.out.println("===> Final path:" + path);
 		String fileName = df.format(new Date()) + ".jpg";
 		File imageFile = new File(path + fileName);
