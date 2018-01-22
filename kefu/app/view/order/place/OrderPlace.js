@@ -10,7 +10,7 @@ Ext.define('app.view.order.place.OrderPlace', {
 
 			// The form will submit an AJAX request to this URL when
 			// submitted
-			// url: './OrderOperation?action=placeOrderRecord',
+			// url: './orderPlace',
 
 			ui : 'dark',
 			aligh: 'center',
