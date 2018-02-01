@@ -1,21 +1,12 @@
 package com.dcmomis.order.place.service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.servlet.ServletConfig;
 
 import com.dcmomis.common.ResponseBean;
+import com.dcmomis.common.service.ImageUploadServ;
 import com.dcmomis.order.OrderRecordBean;
 import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.StringUtils;
@@ -26,32 +17,12 @@ import com.dcmomis.utils.StringUtils;
  */
 public class OrderPlaceDao {
 
-	private static String savePath;
-	
-	public void init(ServletConfig config) {
-		//get the path web application working on
-		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println("worspace_path_before:" + ws_path);// debug
-		int num = ws_path.indexOf(".metadata");
-		if (-1 != num) {
-			ws_path = ws_path.substring(1, num);
-		} else {
-			int n = ws_path.indexOf("DcmWorkspace");
-			ws_path = ws_path.substring(1, n);
-		}
-		System.out.println("worspace_path_after:" + ws_path);
-		
-		// get common picture save path from web.xml
-		String picPath = config.getInitParameter("picPath");
-		savePath = ws_path.replace('/', '\\') + picPath;
-		System.out.println("pic_save_path:" + savePath);
-	}
-	
 	public static String placeOrderRecord(OrderRecordBean orb) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		//PreparedStatement pstmLog = null;
 		ResponseBean rb = new ResponseBean();
+		ImageUploadServ imgServ= new ImageUploadServ();
 		String insertSql = "INSERT INTO `bd_dw_dcm_order_record` "
 				+ "(ORDER_TIME, GROUP_ID, CST_ID, DCM_ID, LINK, COMMODITY_NAME, "
 				+ "COMMODITY_DESC, UNIT_PRICE, AMOUNT, GOODS_COLOR, " + "GOODS_SIZE, DISCOUNT_FINAL, COMMENTS, PICTURE,FINAL_PRICE) "
@@ -76,7 +47,7 @@ public class OrderPlaceDao {
 			// 获取图片
 			if (-1 == orb.getPicture().indexOf("downloadpic")) {
 				// 网络图片
-				pstm.setString(13, storeImage(orb.getPicture()));
+				pstm.setString(13, imgServ.storeImage(orb.getPicture()));
 			} else {
 				// 本地上传图片
 				pstm.setString(13, orb.getPicture());
@@ -139,56 +110,6 @@ public class OrderPlaceDao {
 			DBUtils.release(stm, result, conn);
 		}
 		return groupId;
-	}
-	
-	/**
-	 * 存网络图片
-	 * @param strUrl
-	 * @return
-	 * @throws Exception
-	 */
-	public static String storeImage(String strUrl) throws Exception {
-		URL url = new URL(strUrl);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setConnectTimeout(5 * 1000);
-		InputStream inStream = conn.getInputStream();
-		byte[] data = readInputStream(inStream);
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
-		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println("===> WS_PATH: " + ws_path);
-		int num = ws_path.indexOf(".metadata");
-		System.out.println("===> .metadata index:" + num);
-		if (-1 != num) {
-			ws_path = ws_path.substring(1, num);
-		} else {
-			int n = ws_path.indexOf("WEB-INF");
-			ws_path = ws_path.substring(1, n);
-		}
-		System.out.println("===> WS_PATH: " + ws_path);
-
-//		String path = ws_path.replace('/', '\\') + "downloadpic\\";
-		String path = savePath;
-		System.out.println("===> Final path:" + path);
-		String fileName = df.format(new Date()) + ".jpg";
-		File imageFile = new File(path + fileName);
-		
-		FileOutputStream outStream = new FileOutputStream(imageFile);
-		outStream.write(data);
-		outStream.close();
-		
-		return "downloadpic\\" + fileName;
-	}
-
-	public static byte[] readInputStream(InputStream inStream) throws Exception {
-		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-		byte[] buffer = new byte[1024];
-		int len = 0;
-		while ((len = inStream.read(buffer)) != -1) {
-			outStream.write(buffer, 0, len);
-		}
-		inStream.close();
-		return outStream.toByteArray();
 	}
 
 }

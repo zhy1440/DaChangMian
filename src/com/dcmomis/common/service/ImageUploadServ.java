@@ -1,12 +1,18 @@
 package com.dcmomis.common.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,28 +27,32 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.dcmomis.common.ResponseBean;
 import com.dcmomis.utils.StringUtils;
+import com.dcmomis.utils.initUtils;
 
 public class ImageUploadServ extends HttpServlet {
 	private static final long serialVersionUID = -7744625344830285257L;
-	private String savePath;
+	public String savePath;
 
 	public void init(ServletConfig config) {
-		//get the path web application working on
-		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println("worspace_path_before:" + ws_path);// debug
-		int num = ws_path.indexOf(".metadata");
-		if (-1 != num) {
-			ws_path = ws_path.substring(1, num);
-		} else {
-			int n = ws_path.indexOf("DcmWorkspace");
-			ws_path = ws_path.substring(1, n);
-		}
-		System.out.println("worspace_path_after:" + ws_path);
-		
-		// get common picture save path from web.xml
-		String picPath = config.getInitParameter("picPath");
-		savePath = ws_path.replace('/', '\\') + picPath;
-		System.out.println("pic_save_path:" + savePath);
+//		//get the path web application working on
+//		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+//		System.out.println("worspace_path_before:" + ws_path);// debug
+//		int num = ws_path.indexOf(".metadata");
+//		if (-1 != num) {
+//			//UNDER DEBUG WORKSPACE
+//			ws_path = ws_path.substring(1, num);
+//		} else {
+//			//UNDER DEPLOY ENVIRONMENT
+//			int n = ws_path.indexOf("DcmWorkspace");
+//			ws_path = ws_path.substring(1, n);
+//		}
+//		//Real directory
+//		System.out.println("worspace_path_after:" + ws_path);
+//		
+//		// get common picture save path from web.xml
+//		String picPath = config.getInitParameter("picPath");
+//		savePath = ws_path.replace('/', '\\') + picPath;
+//		System.out.println("pic_save_path:" + savePath);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -55,6 +65,8 @@ public class ImageUploadServ extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		
 		try {
+
+//			Properties p =initUtils.loadProperties().get("PIC_PATH");
 			List items = upload.parseRequest(request);
 			Iterator itr = items.iterator();
 			while (itr.hasNext()) {
@@ -77,7 +89,9 @@ public class ImageUploadServ extends HttpServlet {
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
 						// Define file name use time string
 						String strNow = df.format(new Date());
-						File file = new File(savePath, strNow + "." + prefix);
+						String picPath = initUtils.loadProperties().get("PIC_PATH").toString().replace('/', '\\');
+						System.out.println("===> Upload Image store path:" + picPath);
+						File file = new File(picPath, strNow + "." + prefix);
 						rb.setFileName("downloadpic/" + strNow + "." + prefix);
 
 						System.out.println("=== Uploaded FileName: ========> " + "downloadpic/" + strNow + "." + prefix);
@@ -100,5 +114,42 @@ public class ImageUploadServ extends HttpServlet {
 		rb.setSuccess(true);
 		String result = StringUtils.listToJson(rb, false);
 		out.print(result);
+	}
+	
+	/**
+	 * 存网络图片
+	 * @param strUrl
+	 * @return
+	 * @throws Exception
+	 */
+	public String storeImage(String strUrl) throws Exception {
+		URL url = new URL(strUrl);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setConnectTimeout(5 * 1000);
+		InputStream inStream = conn.getInputStream();
+		byte[] data = readInputStream(inStream);
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
+		String picPath = initUtils.loadProperties().get("PIC_PATH").toString().replace('/', '\\');
+		System.out.println("===> Internet pic store path:" + picPath);
+		String fileName = df.format(new Date()) + ".jpg";
+		File imageFile = new File(picPath + fileName);
+		
+		FileOutputStream outStream = new FileOutputStream(imageFile);
+		outStream.write(data);
+		outStream.close();
+		
+		return "downloadpic\\" + fileName;
+	}
+
+	public static byte[] readInputStream(InputStream inStream) throws Exception {
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = inStream.read(buffer)) != -1) {
+			outStream.write(buffer, 0, len);
+		}
+		inStream.close();
+		return outStream.toByteArray();
 	}
 }

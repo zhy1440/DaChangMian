@@ -84,15 +84,5 @@
 		<servlet-name>AddressManagementServ</servlet-name>
 		<url-pattern>/addrManagement</url-pattern>
 	</servlet-mapping>
-	
-	<!-- test -->
-	<servlet>
-		<servlet-name>ContactServlet</servlet-name>
-		<servlet-class>com.dcmomis.servlet.ContactServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ContactServlet</servlet-name>
-		<url-pattern>/contact</url-pattern>
-	</servlet-mapping>
 
 </web-app>
