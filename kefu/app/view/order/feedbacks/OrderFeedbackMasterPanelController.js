@@ -27,9 +27,6 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackMasterPanelController', {
                                 var panel = this.up('form');
                                 var groupId = panel.getChildByElement('groupId').value;
                                 me.createGroupIdHandler(groupId);
-                                // Ext.getCmp('image').setSrc(imgUrl);
-                                // Ext.getCmp('picUrl').setValue(imgUrl);
-                                // Ext.getCmp('kefuMain').setActiveTab(0);
                                 panel.up('window').destroy();
                             }
                 }]

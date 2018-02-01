@@ -19,6 +19,11 @@ import com.dcmomis.utils.DBUtils;
 import com.dcmomis.utils.StringUtils;
 
 public class AddressManagementServ extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9021894045182067135L;
+
 	// execute GET request
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String output = null;

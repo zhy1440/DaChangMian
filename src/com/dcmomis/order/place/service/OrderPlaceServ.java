@@ -12,6 +12,11 @@ import com.dcmomis.order.OrderRecordBean;
 
 public class OrderPlaceServ extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2149932017980837259L;
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// doPost(request, response);
 		request.setCharacterEncoding("UTF-8");

@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FeedBacksServ extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6807097886350064208L;
+
 	// execute GET request
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// this.doPost(request, response);

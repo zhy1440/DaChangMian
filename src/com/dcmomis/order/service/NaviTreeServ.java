@@ -1,4 +1,4 @@
-package com.dcmomis.kefu.service;
+package com.dcmomis.order.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class NaviTreeServ extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5523247092412804079L;
+
 	// execute GET request
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		this.doPost(request, response);

@@ -1,4 +1,4 @@
-package com.dcmomis.kefu.service;
+package com.dcmomis.order.service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

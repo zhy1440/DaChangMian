@@ -214,4 +214,66 @@ public class FeedBacksDao {
 		String result = StringUtils.listToJson(rb, false);
 		return result;
 	}
+	
+	
+	/**暂未使用
+	 * ?????锟�?id??????锟�??????????绯簊on
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public static String queryOrderRecordbyUid(String id) {
+		String result = null;
+		List<OrderRecordBean> orderRecordList = getOrderRecordListbyUid(id);
+		result = StringUtils.listToJson("orders", orderRecordList);
+		return result;
+	}
+
+	/**暂未使用
+	 * ?????锟�?id??????锟�??????????绯絠st
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public static List<OrderRecordBean> getOrderRecordListbyUid(String id) {
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet result = null;
+		String queryString = "SELECT "
+				+ "ORDER_ID, ORDER_STATUS, ORDER_TIME, GROUP_ID, CST_ID, LINK, COMMODITY_NAME, COMMODITY_DESC,"
+				+ "UNIT_PRICE, AMOUNT, GOODS_COLOR, GOODS_SIZE, DISCOUNT_FINAL, DISCOUNT_FINAL, TOTAL_PRICE,"
+				+ "COMMENTS, PICTURE, OVERSEAS_FREIGH, INLAND_FREIGH " + "FROM BD_DW_DCM_ORDER_RECORD "
+				+ "WHERE DCM_ID = '" + id + "' ORDER BY ORDER_ID DESC";
+		try {
+			conn = DBUtils.getDBConnection();
+			stm = conn.createStatement();
+			result = stm.executeQuery(queryString);
+			List<OrderRecordBean> orderRecordList = new ArrayList<OrderRecordBean>();
+			while (result.next()) {
+				OrderRecordBean orderRecord = new OrderRecordBean();
+				orderRecord.setOrderId(result.getString("ORDER_ID"));
+				orderRecord.setOrderTime(result.getString("ORDER_TIME"));
+				orderRecord.setOrderStatus(DicUtils.GetDicDescbyId(result.getString("ORDER_STATUS"), "ORDER_STATUS"));
+				orderRecord.setGroupId(result.getString("GROUP_ID"));
+				orderRecord.setCstId(result.getString("CST_ID"));
+				orderRecord.setLink(result.getString("LINK"));
+				orderRecord.setCommodityName(result.getString("COMMODITY_NAME"));
+				orderRecord.setCommodityDesc(result.getString("COMMODITY_DESC"));
+				orderRecord.setAmount(result.getString("AMOUNT"));
+				orderRecord.setGoodsColor(result.getString("GOODS_COLOR"));
+				orderRecord.setUnitPrice(result.getString("UNIT_PRICE"));
+				orderRecord.setGoodsSize(result.getString("GOODS_SIZE"));
+				orderRecord.setDiscountDesc(result.getString("DISCOUNT_FINAL"));
+				orderRecord.setComments(result.getString("COMMENTS"));
+				orderRecord.setPicture("<img src=\"" + result.getString("PICTURE") + "\"/  width=\"200\">");
+				orderRecordList.add(orderRecord);
+			}
+			return orderRecordList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.release(stm, result, conn);
+		}
+		return null;
+	}
 }

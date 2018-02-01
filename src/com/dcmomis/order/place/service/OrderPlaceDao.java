@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletConfig;
+
 import com.dcmomis.common.ResponseBean;
 import com.dcmomis.order.OrderRecordBean;
 import com.dcmomis.utils.DBUtils;
@@ -23,6 +25,28 @@ import com.dcmomis.utils.StringUtils;
  *
  */
 public class OrderPlaceDao {
+
+	private static String savePath;
+	
+	public void init(ServletConfig config) {
+		//get the path web application working on
+		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+		System.out.println("worspace_path_before:" + ws_path);// debug
+		int num = ws_path.indexOf(".metadata");
+		if (-1 != num) {
+			ws_path = ws_path.substring(1, num);
+		} else {
+			int n = ws_path.indexOf("DcmWorkspace");
+			ws_path = ws_path.substring(1, n);
+		}
+		System.out.println("worspace_path_after:" + ws_path);
+		
+		// get common picture save path from web.xml
+		String picPath = config.getInitParameter("picPath");
+		savePath = ws_path.replace('/', '\\') + picPath;
+		System.out.println("pic_save_path:" + savePath);
+	}
+	
 	public static String placeOrderRecord(OrderRecordBean orb) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -132,18 +156,19 @@ public class OrderPlaceDao {
 		byte[] data = readInputStream(inStream);
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
 		String ws_path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println(ws_path);
+		System.out.println("===> WS_PATH: " + ws_path);
 		int num = ws_path.indexOf(".metadata");
-		System.out.println(num);
+		System.out.println("===> .metadata index:" + num);
 		if (-1 != num) {
 			ws_path = ws_path.substring(1, num);
 		} else {
 			int n = ws_path.indexOf("WEB-INF");
 			ws_path = ws_path.substring(1, n);
 		}
-		System.out.println(ws_path);
+		System.out.println("===> WS_PATH: " + ws_path);
 
-		String path = ws_path.replace('/', '\\') + "downloadpic\\";
+//		String path = ws_path.replace('/', '\\') + "downloadpic\\";
+		String path = savePath;
 		System.out.println("===> Final path:" + path);
 		String fileName = df.format(new Date()) + ".jpg";
 		File imageFile = new File(path + fileName);

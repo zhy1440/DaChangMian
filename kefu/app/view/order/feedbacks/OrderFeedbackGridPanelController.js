@@ -11,7 +11,7 @@ Ext.define('app.view.order.feedbacks.OrderFeedbackGridPanelController', {
 
         //alert(finalPrice);
         Ext.Ajax.request({
-            url: './feedbacks',//部署后需要修改
+            url: './feedbacks',
             method : 'POST',
             waitMsg : 'Submitting your data...',
             params: {

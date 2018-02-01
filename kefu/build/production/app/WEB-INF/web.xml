@@ -7,20 +7,10 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	<!-- test -->
-	<servlet>
-		<servlet-name>ContactServlet</servlet-name>
-		<servlet-class>com.dcmomis.servlet.ContactServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ContactServlet</servlet-name>
-		<url-pattern>/contact</url-pattern>
-	</servlet-mapping>
 	
 	<!--image upload -->
 	<servlet>
@@ -29,7 +19,7 @@
 		<!-- 设置初始化参数 -->
 		<init-param>
 			<param-name>picPath</param-name>
-			<param-value>DcmWorkspace\kefu\downloadpic\</param-value>
+			<param-value>DcmWorkspace\kefu\build\production\app\downloadpic\</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
@@ -46,21 +36,11 @@
 		<servlet-name>OrderPlaceServ</servlet-name>
 		<url-pattern>/orderPlace</url-pattern>
 	</servlet-mapping>
-	
-	<!-- order operation -->
-	<servlet>
-		<servlet-name>OrderOperationServ</servlet-name>
-		<servlet-class>com.dcmomis.order.service.OrderOperationServ</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>OrderOperationServ</servlet-name>
-		<url-pattern>/OrderOperation</url-pattern>
-	</servlet-mapping>
 
 	<!-- Navi Tree -->
 	<servlet>
 		<servlet-name>NaviTreeServ</servlet-name>
-		<servlet-class>com.dcmomis.kefu.service.NaviTreeServ</servlet-class>
+		<servlet-class>com.dcmomis.order.service.NaviTreeServ</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>NaviTreeServ</servlet-name>
@@ -76,10 +56,13 @@
 		<servlet-name>FeedBacksServ</servlet-name>
 		<url-pattern>/feedbacks</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-------------------------------------------------以下均未使用--------------------------------------->
 	<!-- Customer Management -->
 	<servlet>
 		<servlet-name>CustomerManagementServ</servlet-name>
-		<servlet-class>com.dcmomis.user.service.CustomerManagementServ</servlet-class>
+		<servlet-class>com.dcmomis.user.service.CustomerManagement</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CustomerManagementServ</servlet-name>
@@ -102,6 +85,16 @@
 	<servlet-mapping>
 		<servlet-name>AddressManagementServ</servlet-name>
 		<url-pattern>/addrManagement</url-pattern>
+	</servlet-mapping>
+	
+	<!-- test -->
+	<servlet>
+		<servlet-name>ContactServlet</servlet-name>
+		<servlet-class>com.dcmomis.servlet.ContactServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContactServlet</servlet-name>
+		<url-pattern>/contact</url-pattern>
 	</servlet-mapping>
 
 </web-app>

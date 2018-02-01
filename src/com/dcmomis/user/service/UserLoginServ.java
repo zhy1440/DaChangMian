@@ -1,19 +1,22 @@
 package com.dcmomis.user.service;
 
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.dcmomis.user.CustomerInfoBean;
-import com.dcmomis.utils.*;
+import com.dcmomis.utils.StringUtils;
 
 public class UserLoginServ extends HttpServlet {
 	// execute GET request
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String userName = "ÇëÖØÐÂµÇÂ¼";
+		String userName = "ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Â¼";
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
