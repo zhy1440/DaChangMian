@@ -57,8 +57,6 @@
 		<url-pattern>/feedbacks</url-pattern>
 	</servlet-mapping>
 	
-	
-	<!-------------------------------------------------以下均未使用--------------------------------------->
 	<!-- Customer Management -->
 	<servlet>
 		<servlet-name>CustomerManagementServ</servlet-name>
