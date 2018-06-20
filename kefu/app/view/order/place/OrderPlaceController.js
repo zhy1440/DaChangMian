@@ -34,6 +34,7 @@ Ext.define('app.view.order.place.OrderPlaceController', {
 		if (choice === 'yes') {
 			var form = this.getView().getForm();
 			var param = form.getFieldValues();
+			param.unitPrice = param.unitPrice.trim().replace(/\,|\$/g, "");
 
 			if (form.isValid()) {
 				form.submit({
